@@ -20,3 +20,23 @@ cd dashboard && npm run build
 ```
 
 Do not include real client files, private Drive links, tokens, personal local paths or production runtime logs.
+
+## Before You Contribute
+
+Please read:
+
+- docs/02-architecture/we-law-os.md
+- docs/03-install-run/reinstall-any-computer.md
+- docs/07-community/problems-we-need-help-solving.md
+
+A good contribution should make the system more installable, more auditable, safer for client data, or easier for a lawyer to understand.
+
+## Full Verification
+
+Run the full local gate before pushing:
+
+```bash
+bash scripts/test.sh --full
+```
+
+This validates safety scan, doctor, Python compile, Paperclip worker dry-run, command-spine smoke, 14-role firm smoke, workflow smoke, pytest and dashboard build.

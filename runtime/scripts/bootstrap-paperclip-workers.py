@@ -114,7 +114,7 @@ Runtime identity:
 - Run ID: {{{{runId}}}}
 - Paperclip API: {{{{paperclipApiUrl}}}}
 - Canonical production root: {ROOT}
-- Forbidden root: ${HERMES_WELAW_FORBIDDEN_ROOT:-/path/to/noncanonical-backup}
+- Forbidden root: ${{HERMES_WELAW_FORBIDDEN_ROOT:-/path/to/noncanonical-backup}}
 - Runtime cwd must resolve to the canonical production root above. If you start inside a Paperclip execution workspace, use absolute paths under the canonical production root for durable legal work products.
 - Never write new work products under the forbidden root. If prior issue text points there, report BLOCKER_RUTA_CANONICA and write the corrected artifact under the canonical production root.
 
@@ -133,11 +133,11 @@ Use only synthetic data unless the issue explicitly names a real client record a
 Do not pipe curl into python or any interpreter.
 Do not use `python -c`, heredocs, inline scripts, or ad hoc API scripts for Paperclip reads/writes; Hermes may block those commands.
 Use the checked-in helper scripts from the canonical root exactly as commands, without wrapping them in `python -c`, pipes, heredocs, `export`, command substitution, or ad hoc scripts:
-- Read issue as human text: `${PYTHON:-python3} runtime/scripts/pc_issue_brief.py ISSUE_ID`
-- Read issue as JSON only if needed: `${PYTHON:-python3} runtime/scripts/pc_issue_detail.py ISSUE_ID`
-- Post comment: `${PYTHON:-python3} runtime/scripts/pc_post_comment.py ISSUE_ID "COMMENT_BODY"`
-- Mark done: `${PYTHON:-python3} runtime/scripts/pc_mark_done.py ISSUE_ID`
-- List assigned issues only during no-task heartbeats: `${PYTHON:-python3} runtime/scripts/pc_list_issues.py --assignee {{{{agentId}}}} --limit 20`
+- Read issue as human text: `${{PYTHON:-python3}} runtime/scripts/pc_issue_brief.py ISSUE_ID`
+- Read issue as JSON only if needed: `${{PYTHON:-python3}} runtime/scripts/pc_issue_detail.py ISSUE_ID`
+- Post comment: `${{PYTHON:-python3}} runtime/scripts/pc_post_comment.py ISSUE_ID "COMMENT_BODY"`
+- Mark done: `${{PYTHON:-python3}} runtime/scripts/pc_mark_done.py ISSUE_ID`
+- List assigned issues only during no-task heartbeats: `${{PYTHON:-python3}} runtime/scripts/pc_list_issues.py --assignee {{{{agentId}}}} --limit 20`
 Do not pipe helper output into `head`, `tail`, `python`, `jq`, `sed`, `grep`, or any interpreter/filter. Read the helper output directly.
 
 Smoke tests:
@@ -153,30 +153,30 @@ Issue body:
 {{{{taskBody}}}}
 
 Workflow:
-1. Read the issue with `${PYTHON:-python3} runtime/scripts/pc_issue_brief.py {{{{taskId}}}}`.
+1. Read the issue with `${{PYTHON:-python3}} runtime/scripts/pc_issue_brief.py {{{{taskId}}}}`.
 2. Inspect the We Law skills/config listed above and any sources referenced by the issue.
 3. If and only if this is an explicit live auth smoke issue, post a comment with the prefix "HERMES LIVE OK:" and include: agent name, role key, run id, files/skills inspected, and one concrete next operational action.
-   Use `${PYTHON:-python3} runtime/scripts/pc_post_comment.py {{{{taskId}}}} "HERMES LIVE OK: <summary>"`.
+   Use `${{PYTHON:-python3}} runtime/scripts/pc_post_comment.py {{{{taskId}}}} "HERMES LIVE OK: <summary>"`.
 4. For every real issue, execute the production contract and post the required production comment.
 5. Mark the issue done only after the applicable completion gates pass:
-   Use `${PYTHON:-python3} runtime/scripts/pc_mark_done.py {{{{taskId}}}}`.
+   Use `${{PYTHON:-python3}} runtime/scripts/pc_mark_done.py {{{{taskId}}}}`.
 6. End your response with the issue id and the words "Paperclip writeback confirmed" only when Paperclip was actually updated.
 {{{{/taskId}}}}
 
 {{{{#noTask}}}}
 Heartbeat with no task:
 1. List open issues assigned to you:
-   `${PYTHON:-python3} runtime/scripts/pc_list_issues.py --assignee {{{{agentId}}}} --limit 20`
+   `${{PYTHON:-python3}} runtime/scripts/pc_list_issues.py --assignee {{{{agentId}}}} --limit 20`
 2. If an open issue exists, choose the highest priority not-done issue and save its id as ISSUE_ID.
 3. Read ISSUE_ID:
-   `${PYTHON:-python3} runtime/scripts/pc_issue_brief.py ISSUE_ID`
+   `${{PYTHON:-python3}} runtime/scripts/pc_issue_brief.py ISSUE_ID`
 4. Read existing comments for ISSUE_ID. If a production completion comment already exists, do not reprocess that issue; leave a short final response saying it already has writeback evidence.
 5. Inspect the We Law skills/config listed above and any sources referenced by the issue.
 6. If and only if ISSUE_ID is an explicit live auth smoke issue, post a comment with the prefix "HERMES LIVE OK:" and include: agent name, role key, run id, files/skills inspected, and one concrete next operational action.
-   Use `${PYTHON:-python3} runtime/scripts/pc_post_comment.py ISSUE_ID "HERMES LIVE OK: <summary>"`.
+   Use `${{PYTHON:-python3}} runtime/scripts/pc_post_comment.py ISSUE_ID "HERMES LIVE OK: <summary>"`.
 7. For every real issue, execute the production contract and post the required production comment.
 8. Mark ISSUE_ID done only after the applicable completion gates pass:
-   Use `${PYTHON:-python3} runtime/scripts/pc_mark_done.py ISSUE_ID`.
+   Use `${{PYTHON:-python3}} runtime/scripts/pc_mark_done.py ISSUE_ID`.
 9. End your response with ISSUE_ID and the words "Paperclip writeback confirmed" only when Paperclip was actually updated.
 10. If no issue exists, post no synthetic client data. Report what you checked.
 {{{{/noTask}}}}
@@ -187,8 +187,30 @@ class PaperclipApiError(RuntimeError):
     """Raised when Paperclip returns an API error."""
 
 
+def expand_public_env(value: Any) -> Any:
+    if not isinstance(value, str):
+        return value
+
+    def replace_shell_default(match):
+        name = match.group(1)
+        default = match.group(2) or ""
+        return os.environ.get(name, default)
+
+    import re
+    value = os.path.expandvars(value)
+    return re.sub(r"\$\{([A-Za-z_][A-Za-z0-9_]*)(?::-([^}]*))?\}", replace_shell_default, value)
+
+
+def expand_config(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {key: expand_config(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [expand_config(item) for item in value]
+    return expand_public_env(value)
+
+
 def load_config(path: Path = CONFIG_PATH) -> dict[str, Any]:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return expand_config(json.loads(path.read_text(encoding="utf-8")))
 
 
 def build_payloads(data: dict[str, Any], company_id: str | None = None) -> list[dict[str, Any]]:
@@ -200,7 +222,10 @@ def build_payloads(data: dict[str, Any], company_id: str | None = None) -> list[
     load_legal_worker_contract(LEGAL_WORKER_CONTRACT_PATH)
     validate_workers(firm_model, {str(worker["role"]): worker for worker in data["workers"]})
     for worker in data["workers"]:
-        cwd = Path(str(runtime.get("cwd", str(ROOT))))
+        cwd_value = str(runtime.get("cwd", str(ROOT)))
+        if cwd_value.startswith("/path/to/"):
+            cwd_value = str(ROOT)
+        cwd = Path(cwd_value)
         resolved_cwd = str((ROOT / cwd).resolve() if not cwd.is_absolute() else cwd.resolve())
         payloads.append(
             {
@@ -366,7 +391,7 @@ def main() -> int:
     parser.add_argument("--company-id", default=None, help="Paperclip company UUID. Optional with --create-company.")
     parser.add_argument("--company-name", default="We Law S.C.", help="Company name used with --create-company.")
     parser.add_argument("--create-company", action="store_true", help="Create or reuse company by name when id is missing.")
-    parser.add_argument("--token", default=os.environ.get("PAPERCLIP_API_TOKEN"), help="Optional Paperclip bearer token.")
+    parser.add_argument("--token", default=os.environ.get("PAPERCLIP_API_TOKEN") or os.environ.get("PAPERCLIP_API_KEY"), help="Optional Paperclip bearer token/API key.")
     parser.add_argument("--origin", default=None, help="Optional trusted Origin header for board mutations.")
     parser.add_argument("--if-exists", choices=["skip", "update", "error"], default="skip")
     args = parser.parse_args()

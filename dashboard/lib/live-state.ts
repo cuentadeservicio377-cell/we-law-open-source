@@ -193,7 +193,15 @@ export function getLiveDashboardSnapshot(): LiveDashboardSnapshot {
   return adaptLiveDashboardSnapshot();
 }
 
+function liveProbesEnabled(): boolean {
+  if (process.env.NEXT_PUBLIC_DEMO_MODE === "true") return false;
+  return process.env.ENABLE_LIVE_PROBES === "true";
+}
+
 export async function getLiveDashboardSnapshotLive(): Promise<LiveDashboardSnapshot> {
+  if (!liveProbesEnabled()) {
+    return adaptLiveDashboardSnapshot();
+  }
   try {
     const probeInput = await probeLiveDashboardSnapshotInput();
     return adaptLiveDashboardSnapshot(probeInput);

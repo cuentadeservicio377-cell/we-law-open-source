@@ -15,7 +15,7 @@ PATTERNS = [
     ('email_address', re.compile(r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}')),
     ('live_wel_issue', re.compile(r'\bWEL-\d+(?:-\d+|\.\.\d+|\.\.WEL-\d+)?\b')),
     ('real_client_name', re.compile(r'\b(?:Medialergias|Proyecto Alergias|Minerva|Aleyda|Benjamin|Oscar|Elias|Fernandez|Padilla)\b', re.I)),
-    ('private_account', re.compile(r'cuentadeservicio377|pablomeneses|Pablo')),
+    ('private_account', re.compile(r'pablomeneses|Pablo')),
     ('known_drive_id', re.compile(r'1L4-7OOG|1i6apy|1DzXQVDT|1DyCmhHo|1Sa6Zfl0')),
     ('literal_bearer_secret', re.compile(r'(?i)bearer\s+[A-Za-z0-9._~+/=-]{12,}')),
     ('literal_secret_value', re.compile(r"(?i)(refresh_token|access_token|client_secret|telegram_token)\s*[:=]\s*['\"]?[A-Za-z0-9._~+/=-]{16,}")),
