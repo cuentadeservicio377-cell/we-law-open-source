@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Template Quality",
+  "type": "object",
+  "required": ["id", "area", "document_type", "owner", "jurisdiction", "review_status", "last_reviewed_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "area": { "type": "string" },
+    "document_type": { "type": "string" },
+    "owner": { "type": "string" },
+    "jurisdiction": { "type": "string" },
+    "review_status": {
+      "type": "string",
+      "enum": ["needs_template", "draft", "review", "approved", "deprecated"]
+    },
+    "last_reviewed_at": {
+      "type": ["string", "null"]
+    },
+    "required_variables": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": true
+}

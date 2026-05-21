@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Brain Signal",
+  "type": "object",
+  "required": ["type", "text", "source", "confidence"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["client_identity", "matter_identity", "fact", "decision", "document_request", "document_correction", "deadline", "payment", "approval", "risk", "contradiction", "template_candidate", "lesson"]
+    },
+    "text": {"type": "string"},
+    "source": {"type": "string"},
+    "confidence": {"type": "number"},
+    "client_id": {"type": "string"},
+    "matter_id": {"type": "string"},
+    "entities": {"type": "array", "items": {"type": "string"}},
+    "metadata": {"type": "object"}
+  },
+  "additionalProperties": false
+}

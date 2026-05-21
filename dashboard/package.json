@@ -1,0 +1,28 @@
+{
+  "name": "we-law-open-source-dashboard",
+  "version": "0.1.0",
+  "private": false,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "15.5.18",
+    "react": "19.0.1",
+    "react-dom": "19.0.1",
+    "lucide-react": "^0.460.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "next": {
+      "postcss": "8.5.14"
+    }
+  },
+  "description": "Lawyer-facing trust surface for We Law Open Source."
+}

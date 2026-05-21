@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Intake Question",
+  "type": "object",
+  "required": ["field", "question", "urgency", "matterTypes"],
+  "properties": {
+    "field": { "type": "string" },
+    "question": { "type": "string" },
+    "urgency": {
+      "type": "string",
+      "enum": ["can_start", "blocks_drafting", "blocks_filing", "blocks_signature"]
+    },
+    "matterTypes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}

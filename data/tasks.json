@@ -1,0 +1,74 @@
+[
+  {
+    "id": "TASK-DEMO-01",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "title": "Consolidate source folder and transcript evidence",
+    "owner": "Expediente / Records Manager",
+    "status": "done",
+    "priority": "high",
+    "due_date": "2026-06-01"
+  },
+  {
+    "id": "TASK-DEMO-02",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "title": "Update Control Master rows from extracted facts",
+    "owner": "Data Clerk / Google Sheets",
+    "status": "done",
+    "priority": "high",
+    "due_date": "2026-06-01"
+  },
+  {
+    "id": "TASK-DEMO-03",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "title": "Prepare legal basis memo and risk matrix",
+    "owner": "Analista Juridico",
+    "status": "done",
+    "priority": "high",
+    "due_date": "2026-06-02"
+  },
+  {
+    "id": "TASK-DEMO-04",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "title": "Draft document packet from transcript evidence",
+    "owner": "Documentos Legales",
+    "status": "review",
+    "priority": "high",
+    "due_date": "2026-06-03"
+  },
+  {
+    "id": "TASK-DEMO-05",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "title": "Review privacy and sensitive-data processing",
+    "owner": "Privacidad y Compliance",
+    "status": "review",
+    "priority": "high",
+    "due_date": "2026-06-03"
+  },
+  {
+    "id": "TASK-DEMO-06",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "title": "Review software scope and ownership blockers",
+    "owner": "IP Software",
+    "status": "blocked",
+    "priority": "high",
+    "due_date": "2026-06-04"
+  },
+  {
+    "id": "TASK-DEMO-07",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "title": "Prepare editorial package after legal gates",
+    "owner": "Produccion Editorial",
+    "status": "blocked",
+    "priority": "medium",
+    "due_date": "2026-06-05"
+  },
+  {
+    "id": "TASK-DEMO-08",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "title": "Senior review: delivery and signature gate",
+    "owner": "Revisor Senior",
+    "status": "blocked",
+    "priority": "high",
+    "due_date": "2026-06-05"
+  }
+]

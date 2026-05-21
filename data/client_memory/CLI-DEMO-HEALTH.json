@@ -1,0 +1,31 @@
+{
+  "client_id": "CLI-DEMO-HEALTH",
+  "client_name": "Northstar Health Demo LLC",
+  "facts": [
+    "Client operates a demo health SaaS platform.",
+    "The initial transcript requested a legal package for platform launch.",
+    "A later review transcript requested corrections and additional software/IP documents."
+  ],
+  "preferences": [
+    "Keep Google Workspace as the visible office layer.",
+    "Do not mark anything signature-ready until Senior Review clears blockers."
+  ],
+  "risks": [
+    "Missing tax and representative data blocks signature.",
+    "Software ownership facts are incomplete.",
+    "Privacy notice requires confirmation of sensitive health data categories."
+  ],
+  "matter_ids": [
+    "MAT-DEMO-HEALTH-SAAS"
+  ],
+  "document_notes": [
+    "Terms and Conditions - Northstar Health Demo",
+    "Integral Privacy Notice - Northstar Health Demo",
+    "Doctors and Patients Privacy Notice - Northstar Health Demo",
+    "ARCO Rights Request Form - Northstar Health Demo",
+    "Developer NDA - Northstar Health Demo",
+    "Software Development Agreement - Northstar Health Demo",
+    "Co-Ownership Agreement - Northstar Health Demo"
+  ],
+  "updated_at": "2026-05-21T00:00:00Z"
+}

@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "1",
+  "name": "We Law Legal Brain Operating Model",
+  "purpose": "Shared institutional, client/matter and operational brain for Hermes Director and Paperclip workers.",
+  "runtime": {
+    "owner": "Hermes Director",
+    "preferredEngine": "gbrain",
+    "fallbackEngine": "local_markdown",
+    "brainRoot": "workspace/brain",
+    "workspaceWrites": "Hermes-owned skills only",
+    "codexConnectorPolicy": "audit-only"
+  },
+  "layers": [
+    {
+      "id": "institutional",
+      "description": "How We Law works: process playbooks, legal basis, templates, clauses, quality gates and lessons learned.",
+      "domains": ["processes", "playbooks", "law", "jurisdictions", "courts", "templates", "clauses", "risks", "lessons"]
+    },
+    {
+      "id": "client_matter",
+      "description": "Who the client is, what matters exist, what was said, what documents exist and what facts are verified.",
+      "domains": ["clients", "matters", "people", "organizations", "meetings", "transcripts", "documents", "evidence"]
+    },
+    {
+      "id": "operational",
+      "description": "What must happen next: active processes, Paperclip routing, plazos, approvals, billing and dashboard state.",
+      "domains": ["deadlines", "approvals", "billing", "contradictions", "inbox"]
+    }
+  ],
+  "authorityOrder": [
+    "user_direct_statement",
+    "google_workspace_live_file",
+    "paperclip_issue_or_comment",
+    "compiled_brain_truth",
+    "timeline_entry",
+    "local_workspace_artifact",
+    "external_legal_reference",
+    "agent_inference"
+  ],
+  "pageTypes": {
+    "client": {
+      "domain": "clients",
+      "requiredFields": ["client_id", "canonical_name", "aliases", "status", "open_threads"],
+      "linksTo": ["matters", "people", "organizations", "documents", "billing"]
+    },
+    "matter": {
+      "domain": "matters",
+      "requiredFields": ["matter_id", "client_id", "status", "phase", "open_threads", "source_index"],
+      "linksTo": ["clients", "documents", "evidence", "deadlines", "approvals", "billing"]
+    },
+    "person": {
+      "domain": "people",
+      "requiredFields": ["canonical_name", "aliases", "relationship", "source"],
+      "linksTo": ["clients", "organizations", "matters", "meetings"]
+    },
+    "document": {
+      "domain": "documents",
+      "requiredFields": ["document_id", "matter_id", "document_type", "status", "source_url_or_path"],
+      "linksTo": ["matters", "evidence", "law", "templates", "approvals"]
+    },
+    "process": {
+      "domain": "processes",
+      "requiredFields": ["process_id", "triggers", "required_roles", "required_artifacts", "completion_gates"],
+      "linksTo": ["playbooks", "law", "templates", "risks"]
+    },
+    "legal_basis": {
+      "domain": "law",
+      "requiredFields": ["jurisdiction", "topic", "source", "applies_to"],
+      "linksTo": ["documents", "processes", "risks"]
+    }
+  },
+  "signalTypes": [
+    "client_identity",
+    "matter_identity",
+    "fact",
+    "decision",
+    "document_request",
+    "document_correction",
+    "deadline",
+    "payment",
+    "approval",
+    "risk",
+    "contradiction",
+    "template_candidate",
+    "lesson"
+  ],
+  "processes": [
+    {
+      "id": "nuevo_cliente_matter",
+      "title": "Nuevo cliente o nuevo asunto",
+      "triggers": ["nuevo cliente", "nuevo asunto", "abrir expediente", "intake"],
+      "requiredRoles": ["master", "intake", "file", "sheets"],
+      "requiredArtifacts": ["INTAKE_SUMMARY.md", "CLIENT_MATTER_LINK.json", "EXPEDIENTE_VIVO.md", "SHEETS_UPDATE_PLAN.json"]
+    },
+    {
+      "id": "paquete_contractual",
+      "title": "Paquete contractual",
+      "triggers": ["contrato", "nda", "terminos", "convenio", "paquete documental"],
+      "requiredRoles": ["master", "legal_research", "documents", "senior_review", "editorial"],
+      "requiredArtifacts": ["LEGAL_BASIS_MEMO.md", "DATA_LEDGER.json", "LEGAL_QA.md", "CLIENT_DELIVERY_DECISION.md"]
+    },
+    {
+      "id": "privacidad_datos",
+      "title": "Privacidad y datos personales",
+      "triggers": ["aviso de privacidad", "arco", "datos personales", "datos sensibles", "lfpdppp"],
+      "requiredRoles": ["master", "privacy", "documents", "senior_review"],
+      "requiredArtifacts": ["PRIVACY_DATA_MAP.json", "COMPLIANCE_MATRIX.md", "ARCO_CHECKLIST.md", "PRIVACY_QA.md"]
+    },
+    {
+      "id": "software_ip",
+      "title": "Software, propiedad intelectual y cotitularidad",
+      "triggers": ["software", "desarrollo", "repositorio", "propiedad intelectual", "cotitularidad"],
+      "requiredRoles": ["master", "ip_software", "documents", "privacy", "senior_review"],
+      "requiredArtifacts": ["IP_OWNERSHIP_MATRIX.md", "SOFTWARE_SCOPE_LEDGER.json", "TECH_CONTRACT_QA.md"]
+    },
+    {
+      "id": "litigio",
+      "title": "Litigio y estrategia procesal",
+      "triggers": ["demanda", "juicio", "juzgado", "audiencia", "pruebas", "anexos"],
+      "requiredRoles": ["master", "litigation", "deadlines", "senior_review"],
+      "requiredArtifacts": ["CASE_THEORY.md", "PROCEDURAL_POSTURE.md", "EVIDENCE_TABLE.md", "DEADLINE_RISK.md"]
+    },
+    {
+      "id": "plazos_agenda",
+      "title": "Plazos, computos y agenda",
+      "triggers": ["plazo", "vence", "vencimiento", "recordatorio", "agenda", "audiencia"],
+      "requiredRoles": ["master", "deadlines"],
+      "requiredArtifacts": ["DEADLINE_REGISTER.json", "COMPUTATION_PLAN.json", "CALENDAR_SYNC_PLAN.md"]
+    },
+    {
+      "id": "cobranza",
+      "title": "Cobranza y autorizacion de trabajo",
+      "triggers": ["anticipo", "abono", "pago", "honorarios", "cobranza", "factura"],
+      "requiredRoles": ["master", "collections"],
+      "requiredArtifacts": ["BILLING_LEDGER.json", "WORK_AUTHORIZATION_STATUS.md", "BILLING_QA.md"]
+    },
+    {
+      "id": "entrega_cliente_firma",
+      "title": "Entrega al cliente y firma",
+      "triggers": ["entregar", "cliente", "firma", "signature-ready", "final"],
+      "requiredRoles": ["master", "senior_review", "editorial", "file"],
+      "requiredArtifacts": ["CLIENT_DELIVERY_DECISION.md", "CLIENT_DELIVERY_LINKS.md", "DELIVERABLE_MANIFEST.json"]
+    }
+  ],
+  "writeRules": [
+    "Every durable fact needs source attribution.",
+    "Every page has compiled truth above a timeline separator.",
+    "Timeline entries are append-only.",
+    "Paperclip workers submit BRAIN_UPDATE_PROPOSAL.json; Hermes/Revisor validates before durable truth changes.",
+    "Contradictions are first-class records, not silent overwrites.",
+    "If gbrain is unavailable, local markdown fallback remains authoritative until sync."
+  ],
+  "workerContract": {
+    "requiredInputs": ["BRAIN_CONTEXT.md", "PROCESS_CONTEXT.md"],
+    "requiredOutput": "BRAIN_UPDATE_PROPOSAL.json",
+    "forbidden": [
+      "closing work without checking brain context",
+      "mutating institutional truth directly from a worker",
+      "hiding contradictions between source and compiled truth"
+    ]
+  }
+}

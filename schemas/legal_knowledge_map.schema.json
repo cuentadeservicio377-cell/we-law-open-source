@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Legal Knowledge Map",
+  "type": "object",
+  "required": ["version", "jurisdiction", "source", "documents", "packages"],
+  "properties": {
+    "version": { "type": "integer" },
+    "jurisdiction": { "type": "string" },
+    "source": { "type": "string" },
+    "documents": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "title",
+          "area",
+          "primaryReviewer",
+          "specialistReviewers",
+          "legalBasis",
+          "requiredFactFields",
+          "keywords"
+        ],
+        "properties": {
+          "title": { "type": "string" },
+          "area": { "type": "string" },
+          "primaryReviewer": { "type": "string" },
+          "specialistReviewers": { "type": "array", "items": { "type": "string" } },
+          "legalBasis": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "requiredFactFields": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "keywords": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "packages": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["title", "requiredDocuments", "keywords"],
+        "properties": {
+          "title": { "type": "string" },
+          "requiredDocuments": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "keywords": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

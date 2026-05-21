@@ -1,0 +1,355 @@
+{
+  "firm": {
+    "name": "We Law S.C.",
+    "operatingSystem": "Hermes We Law OS",
+    "masterRole": "master",
+    "matterOwnerRole": "master",
+    "paperclipAdapterType": "hermes_local",
+    "controller": {
+      "displayName": "Hermes Director",
+      "paperclipWorker": false,
+      "responsibilities": [
+        "Receive the lawyer's Telegram, field, Drive and project instructions.",
+        "Create or update the main Paperclip matter issue.",
+        "Route work to the legal-firm workers without asking the lawyer to choose agents.",
+        "Keep final reporting honest about blockers, placeholders, approvals and live Workspace status."
+      ]
+    }
+  },
+  "allowedMatterStatuses": [
+    "prospecto",
+    "activo",
+    "en_revision",
+    "en_cierre",
+    "cerrado",
+    "rechazado",
+    "bloqueado"
+  ],
+  "allowedPackageStatuses": [
+    "draft",
+    "review",
+    "client-deliverable",
+    "blocked",
+    "signature-ready"
+  ],
+  "allowedIssueStatuses": [
+    "todo",
+    "in_progress",
+    "blocked",
+    "review",
+    "done"
+  ],
+  "missingInfoTaxonomy": [
+    "para_avanzar",
+    "para_firma",
+    "no_bloqueante"
+  ],
+  "approvalTypes": [
+    "engagement",
+    "document",
+    "package",
+    "payment",
+    "matter_close",
+    "template_update"
+  ],
+  "roles": {
+    "master": {
+      "displayName": "Despacho Legal",
+      "paperclipCommentPrefix": "MASTER WORK PRODUCT:",
+      "responsibilities": [
+        "Own the main matter issue, legal strategy and final integration.",
+        "Route work to specialist Paperclip workers with clear internal handoffs.",
+        "Keep the live file coherent across Telegram, Paperclip, Workspace and local artifacts.",
+        "Escalate blockers, approvals and client-facing decisions to the lawyer."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "MATTER_STATUS.md", "type": "status_report", "required": true },
+        { "name": "ROUTING_DECISION.json", "type": "routing_record", "required": true },
+        { "name": "APPROVAL_REQUESTS.md", "type": "approval_log", "required": true },
+        { "name": "DECISION_LOG.md", "type": "decision_log", "required": true }
+      ],
+      "completionGates": [
+        "Every specialist result is summarized or explicitly marked blocked.",
+        "Pending approvals are listed before client-facing delivery.",
+        "No matter is closed while specialist blockers remain open.",
+        "Paperclip writeback uses MASTER WORK PRODUCT."
+      ]
+    },
+    "intake": {
+      "displayName": "Recepcionista Juridico",
+      "paperclipCommentPrefix": "INTAKE WORK PRODUCT:",
+      "responsibilities": [
+        "Open or reuse clients and matters.",
+        "Extract facts from transcripts before asking the lawyer for missing data.",
+        "Collect intake in small parts.",
+        "Classify missing information by urgency."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "INTAKE_SUMMARY.md", "type": "intake_summary", "required": true },
+        { "name": "MISSING_INFO.json", "type": "missing_info", "required": true },
+        { "name": "CLIENT_MATTER_LINK.json", "type": "client_matter_link", "required": true }
+      ],
+      "completionGates": [
+        "Client and matter identifiers are known or a blocker is recorded.",
+        "Missing fields are classified as para_avanzar, para_firma or no_bloqueante.",
+        "Paperclip writeback uses INTAKE WORK PRODUCT."
+      ]
+    },
+    "file": {
+      "displayName": "Expediente",
+      "paperclipCommentPrefix": "FILE WORK PRODUCT:",
+      "responsibilities": [
+        "Assemble matter folders and source indexes.",
+        "Maintain the live file as the operational source of truth.",
+        "Track source documents, Drive links, Google Docs and local artifacts."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "EXPEDIENTE_VIVO.md", "type": "live_file", "required": true },
+        { "name": "FOLDER_MANIFEST.json", "type": "folder_manifest", "required": true },
+        { "name": "SOURCE_INDEX.md", "type": "source_index", "required": true },
+        { "name": "VERSION_LOG.md", "type": "version_log", "required": true }
+      ],
+      "completionGates": [
+        "All known sources are indexed.",
+        "Folder plan has local or Workspace target paths.",
+        "Paperclip writeback uses FILE WORK PRODUCT."
+      ]
+    },
+    "sheets": {
+      "displayName": "Data Clerk / Google Sheets",
+      "paperclipCommentPrefix": "SHEETS WORK PRODUCT:",
+      "responsibilities": [
+        "Maintain the master control tables for clients, matters, documents, facts and deliverables.",
+        "Use local JSON/CSV fallback when live Google Sheets credentials are unavailable.",
+        "Prepare dry-run write plans before any live Workspace mutation."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "SHEETS_UPDATE_PLAN.json", "type": "sheets_update_plan", "required": true },
+        { "name": "CLIENT_ROW.json", "type": "client_row", "required": true },
+        { "name": "MATTER_ROW.json", "type": "matter_row", "required": true },
+        { "name": "DOCUMENT_ROWS.json", "type": "document_rows", "required": true },
+        { "name": "FACT_ROWS.json", "type": "fact_rows", "required": true }
+      ],
+      "completionGates": [
+        "Every row has a stable logical key.",
+        "Live writes are blocked unless Workspace credentials and approval are present.",
+        "Paperclip writeback uses SHEETS WORK PRODUCT."
+      ]
+    },
+    "legal_research": {
+      "displayName": "Analista Juridico",
+      "paperclipCommentPrefix": "RESEARCH WORK PRODUCT:",
+      "responsibilities": [
+        "Identify applicable Mexican legal basis for the requested matter and documents.",
+        "Define document requirements and legal risks before drafting.",
+        "Separate legal conclusions from missing factual assumptions."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "LEGAL_BASIS_MEMO.md", "type": "legal_basis_memo", "required": true },
+        { "name": "DOCUMENT_REQUIREMENTS.json", "type": "document_requirements", "required": true },
+        { "name": "RISK_MATRIX.md", "type": "risk_matrix", "required": true }
+      ],
+      "completionGates": [
+        "Every required document has a legal basis or a recorded research blocker.",
+        "Legal risks are classified before drafting starts.",
+        "Paperclip writeback uses RESEARCH WORK PRODUCT."
+      ]
+    },
+    "documents": {
+      "displayName": "Documentos Legales",
+      "paperclipCommentPrefix": "LEGAL WORK PRODUCT:",
+      "responsibilities": [
+        "Read sources and transcripts before drafting.",
+        "Extract reusable client and matter data.",
+        "Apply requested corrections with traceability.",
+        "Draft, revise and package legal documents without reducing substance into summaries."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "EVIDENCE_MAP.md", "type": "evidence_map", "required": true },
+        { "name": "DATA_LEDGER.json", "type": "data_ledger", "required": true },
+        { "name": "CORRECTIONS_APPLIED.md", "type": "corrections_log", "required": true },
+        { "name": "PLACEHOLDER_REPORT.md", "type": "placeholder_report", "required": true },
+        { "name": "DELIVERABLE_MANIFEST.json", "type": "deliverable_manifest", "required": true },
+        { "name": "LEGAL_QA.md", "type": "legal_qa", "required": true }
+      ],
+      "completionGates": [
+        "No final/signature-ready claim is allowed while placeholders remain.",
+        "Facts used in documents are source-backed or marked unknown.",
+        "Cross-document review is required for packages.",
+        "Paperclip writeback uses LEGAL WORK PRODUCT."
+      ]
+    },
+    "privacy": {
+      "displayName": "Privacidad y Compliance",
+      "paperclipCommentPrefix": "PRIVACY WORK PRODUCT:",
+      "responsibilities": [
+        "Review privacy, ARCO, sensitive data and compliance obligations.",
+        "Map data subjects, controllers, processors and transfer flows.",
+        "Block delivery when privacy-sensitive facts are missing."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "PRIVACY_DATA_MAP.json", "type": "privacy_data_map", "required": true },
+        { "name": "COMPLIANCE_MATRIX.md", "type": "compliance_matrix", "required": true },
+        { "name": "ARCO_CHECKLIST.md", "type": "arco_checklist", "required": true },
+        { "name": "PRIVACY_QA.md", "type": "privacy_qa", "required": true }
+      ],
+      "completionGates": [
+        "Privacy notices identify data categories, purposes, transfers and ARCO mechanism.",
+        "Sensitive data handling is explicit or blocked.",
+        "Paperclip writeback uses PRIVACY WORK PRODUCT."
+      ]
+    },
+    "ip_software": {
+      "displayName": "IP / Software",
+      "paperclipCommentPrefix": "IP SOFTWARE WORK PRODUCT:",
+      "responsibilities": [
+        "Review software development, licensing, confidentiality and IP ownership issues.",
+        "Track deliverables, repositories, third-party components and cotitularity terms.",
+        "Block signature-ready status when ownership or scope is ambiguous."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "IP_OWNERSHIP_MATRIX.md", "type": "ip_ownership_matrix", "required": true },
+        { "name": "SOFTWARE_SCOPE_LEDGER.json", "type": "software_scope_ledger", "required": true },
+        { "name": "TECH_CONTRACT_QA.md", "type": "tech_contract_qa", "required": true }
+      ],
+      "completionGates": [
+        "Software scope and IP ownership are consistent across NDA, development contract and cotitularity agreement.",
+        "Third-party component risks are marked known, unknown or not applicable.",
+        "Paperclip writeback uses IP SOFTWARE WORK PRODUCT."
+      ]
+    },
+    "litigation": {
+      "displayName": "Litigio",
+      "paperclipCommentPrefix": "LITIGATION WORK PRODUCT:",
+      "responsibilities": [
+        "Prepare litigation strategy, procedural posture, pleadings and evidence tables.",
+        "Identify judicial deadlines and evidentiary blockers.",
+        "Coordinate with Plazos before any filing recommendation."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "CASE_THEORY.md", "type": "case_theory", "required": true },
+        { "name": "PROCEDURAL_POSTURE.md", "type": "procedural_posture", "required": true },
+        { "name": "EVIDENCE_TABLE.md", "type": "evidence_table", "required": true },
+        { "name": "FILING_PACKAGE_MANIFEST.json", "type": "filing_package_manifest", "required": true },
+        { "name": "DEADLINE_RISK.md", "type": "deadline_risk", "required": true }
+      ],
+      "completionGates": [
+        "Deadline handoff is created for every identified judicial term.",
+        "Evidence gaps are classified before filing.",
+        "Paperclip writeback uses LITIGATION WORK PRODUCT."
+      ]
+    },
+    "deadlines": {
+      "displayName": "Plazos",
+      "paperclipCommentPrefix": "DEADLINE WORK PRODUCT:",
+      "responsibilities": [
+        "Register judicial and operational deadlines.",
+        "Maintain reminders and escalation status.",
+        "Report upcoming deadlines to Despacho Legal."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "DEADLINE_LEDGER.json", "type": "deadline_ledger", "required": true },
+        { "name": "CALENDAR_SYNC_PLAN.md", "type": "calendar_sync_plan", "required": true },
+        { "name": "REMINDER_MANIFEST.json", "type": "reminder_manifest", "required": true },
+        { "name": "DEADLINE_RISK_REPORT.md", "type": "deadline_risk_report", "required": true }
+      ],
+      "completionGates": [
+        "Every deadline has owner, due date, source and escalation rule.",
+        "Blocked or missing dates are explicitly reported.",
+        "Paperclip writeback uses DEADLINE WORK PRODUCT."
+      ]
+    },
+    "collections": {
+      "displayName": "Cobranza",
+      "paperclipCommentPrefix": "BILLING WORK PRODUCT:",
+      "responsibilities": [
+        "Track retainers, partial payments, balances and final payments.",
+        "Coordinate payment-related approvals.",
+        "Report collection blockers before matter close."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "BILLING_LEDGER.json", "type": "billing_ledger", "required": true },
+        { "name": "PAYMENT_STATUS.md", "type": "payment_status", "required": true },
+        { "name": "COLLECTIONS_ACTIONS.md", "type": "collections_actions", "required": true },
+        { "name": "WORK_AUTHORIZATION_STATUS.md", "type": "work_authorization_status", "required": true }
+      ],
+      "completionGates": [
+        "Money movement is never invented and must cite source or approval.",
+        "Matter close is blocked when required payment data is missing.",
+        "Paperclip writeback uses BILLING WORK PRODUCT."
+      ]
+    },
+    "editorial": {
+      "displayName": "Produccion Editorial",
+      "paperclipCommentPrefix": "EDITORIAL WORK PRODUCT:",
+      "responsibilities": [
+        "Convert approved legal drafts into client-facing Kami/Canva-style deliverables.",
+        "Preserve legal length, clause structure and defined terms.",
+        "Run visual and text QA before delivery links are reported."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "EDITORIAL_SPEC.json", "type": "editorial_spec", "required": true },
+        { "name": "RENDER_MANIFEST.json", "type": "render_manifest", "required": true },
+        { "name": "VISUAL_QA.md", "type": "visual_qa", "required": true },
+        { "name": "CLIENT_DELIVERY_LINKS.md", "type": "client_delivery_links", "required": true }
+      ],
+      "completionGates": [
+        "Editorial output cannot shorten or remove legal substance.",
+        "Rendered files pass text and visual QA.",
+        "Paperclip writeback uses EDITORIAL WORK PRODUCT."
+      ]
+    },
+    "senior_review": {
+      "displayName": "Revisor Senior",
+      "paperclipCommentPrefix": "SENIOR REVIEW WORK PRODUCT:",
+      "responsibilities": [
+        "Review legal work before client delivery or signature.",
+        "Identify legal, factual, drafting and delivery risks.",
+        "Decide whether the package is blocked, review, client-deliverable or signature-ready."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "SENIOR_REVIEW.md", "type": "senior_review", "required": true },
+        { "name": "LEGAL_RISK_MEMO.md", "type": "legal_risk_memo", "required": true },
+        { "name": "CLIENT_DELIVERY_DECISION.md", "type": "client_delivery_decision", "required": true }
+      ],
+      "completionGates": [
+        "Signature-ready requires zero blockers and zero placeholders.",
+        "Client delivery requires an explicit delivery decision.",
+        "Paperclip writeback uses SENIOR REVIEW WORK PRODUCT."
+      ]
+    },
+    "admin": {
+      "displayName": "Admin Biblioteca",
+      "paperclipCommentPrefix": "KNOWLEDGE WORK PRODUCT:",
+      "responsibilities": [
+        "Maintain template library and knowledge base proposals.",
+        "Prepare weekly and matter-level reports.",
+        "Capture lessons learned after completed work."
+      ],
+      "allowedStatuses": ["todo", "in_progress", "blocked", "review", "done"],
+      "requiredArtifacts": [
+        { "name": "LESSONS_LEARNED.md", "type": "lessons_learned", "required": true },
+        { "name": "TEMPLATE_UPDATE_PROPOSAL.md", "type": "template_update_proposal", "required": true },
+        { "name": "KNOWLEDGE_INDEX.json", "type": "knowledge_index", "required": true }
+      ],
+      "completionGates": [
+        "Template changes are proposals until approved.",
+        "Reports separate facts, blockers and recommendations.",
+        "Paperclip writeback uses KNOWLEDGE WORK PRODUCT."
+      ]
+    }
+  }
+}

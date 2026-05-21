@@ -1,0 +1,65 @@
+[
+  {
+    "id": "DOC-DEMO-01",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "type": "terms_conditions",
+    "title": "Terms and Conditions - Northstar Health Demo",
+    "status": "review",
+    "version": "v1",
+    "drive_path": "demo://workspace/docs/DOC-DEMO-01"
+  },
+  {
+    "id": "DOC-DEMO-02",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "type": "privacy_notice_integral",
+    "title": "Integral Privacy Notice - Northstar Health Demo",
+    "status": "review",
+    "version": "v1",
+    "drive_path": "demo://workspace/docs/DOC-DEMO-02"
+  },
+  {
+    "id": "DOC-DEMO-03",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "type": "privacy_notice_patients_doctors",
+    "title": "Doctors and Patients Privacy Notice - Northstar Health Demo",
+    "status": "review",
+    "version": "v1",
+    "drive_path": "demo://workspace/docs/DOC-DEMO-03"
+  },
+  {
+    "id": "DOC-DEMO-04",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "type": "arco_request_form",
+    "title": "ARCO Rights Request Form - Northstar Health Demo",
+    "status": "review",
+    "version": "v1",
+    "drive_path": "demo://workspace/docs/DOC-DEMO-04"
+  },
+  {
+    "id": "DOC-DEMO-05",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "type": "nda_developers",
+    "title": "Developer NDA - Northstar Health Demo",
+    "status": "review",
+    "version": "v1",
+    "drive_path": "demo://workspace/docs/DOC-DEMO-05"
+  },
+  {
+    "id": "DOC-DEMO-06",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "type": "software_development_agreement",
+    "title": "Software Development Agreement - Northstar Health Demo",
+    "status": "blocked",
+    "version": "v1",
+    "drive_path": "demo://workspace/docs/DOC-DEMO-06"
+  },
+  {
+    "id": "DOC-DEMO-07",
+    "matter_id": "MAT-DEMO-HEALTH-SAAS",
+    "type": "co_ownership_agreement",
+    "title": "Co-Ownership Agreement - Northstar Health Demo",
+    "status": "blocked",
+    "version": "v1",
+    "drive_path": "demo://workspace/docs/DOC-DEMO-07"
+  }
+]

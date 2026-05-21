@@ -1,0 +1,142 @@
+[
+  {
+    "id": "DEMO-ISSUE-01",
+    "role": "Despacho Legal",
+    "summary": "Managing legal office coordinator. Owns the matter, reads the Legal Brain, checks Workspace and Paperclip state, creates delegation plans, keeps blockers visible and prepares the partner briefing.",
+    "status": "done",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-02",
+    "role": "Recepcionista Juridico / Intake",
+    "summary": "Handles client and matter intake from conversations, folders and forms. Identifies existing clients, opens new matters, extracts missing information and prepares intake packets.",
+    "status": "done",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-03",
+    "role": "Expediente / Records Manager",
+    "summary": "Maintains the live matter file, source index, folder manifest, evidence provenance, version log and matter history.",
+    "status": "done",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-04",
+    "role": "Data Clerk Google Sheets",
+    "summary": "Maintains structured ledgers for clients, matters, facts, documents, missing information, approvals, billing references and workspace manifests.",
+    "status": "done",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-05",
+    "role": "Analista Juridico",
+    "summary": "Maps facts to legal issues, identifies legal risks, summarizes applicable rules and prepares analysis notes for drafting and review.",
+    "status": "done",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-06",
+    "role": "Documentos Legales",
+    "summary": "Drafts and updates legal documents with evidence maps, data ledgers, correction logs, placeholder reports, manifests and legal QA.",
+    "status": "review",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-07",
+    "role": "Privacidad y Compliance",
+    "summary": "Reviews privacy, data protection, confidentiality, consent, records handling and compliance risks.",
+    "status": "review",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-08",
+    "role": "IP Software",
+    "summary": "Handles software, copyright, licensing, ownership, SaaS, source code and technology-contract issues.",
+    "status": "review",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-09",
+    "role": "Litigio",
+    "summary": "Builds case theory, evidence lists, procedural checklists, pleadings support, filing blockers and court deadline dependencies.",
+    "status": "review",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-10",
+    "role": "Plazos",
+    "summary": "Owns deadline extraction, conservative deadline ledgers, reminders, uncertainty flags and escalation state.",
+    "status": "review",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-11",
+    "role": "Cobranza",
+    "summary": "Tracks fee, retainer, invoice, payment, authorization and commercial blockers.",
+    "status": "review",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-12",
+    "role": "Produccion Editorial",
+    "summary": "Turns reviewed legal work into polished packages and checks formatting, completeness, exhibit order and readability.",
+    "status": "blocked",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-13",
+    "role": "Revisor Senior",
+    "summary": "Acts as the senior legal quality gate before partner approval, delivery, filing or signature.",
+    "status": "blocked",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  },
+  {
+    "id": "DEMO-ISSUE-14",
+    "role": "Admin Biblioteca / Knowledge Manager",
+    "summary": "Curates templates, playbooks, clause libraries, process notes, lessons learned and Legal Brain update proposals.",
+    "status": "blocked",
+    "required_artifacts": [
+      "work-product.md",
+      "manifest.json"
+    ]
+  }
+]

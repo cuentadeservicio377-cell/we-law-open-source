@@ -1,0 +1,241 @@
+{
+  "version": 1,
+  "jurisdiction": "MX",
+  "source": "willow-portable-plus-hermes-welaw",
+  "documents": {
+    "terminos_condiciones": {
+      "title": "Términos y Condiciones",
+      "area": "contratos",
+      "primaryReviewer": "documents",
+      "specialistReviewers": ["privacy", "ip_software"],
+      "legalBasis": [
+        "Código de Comercio: actos de comercio y contratación mercantil",
+        "Código Civil Federal: obligaciones, consentimiento y cláusulas contractuales",
+        "Ley Federal de Protección al Consumidor: información, publicidad y condiciones de contratación cuando aplique"
+      ],
+      "requiredFactFields": [
+        "cliente.nombre",
+        "cliente.domicilio",
+        "servicio.descripcion",
+        "plataforma.url",
+        "pagos.mecanica",
+        "cancelaciones.politica",
+        "responsabilidad.limitaciones"
+      ],
+      "keywords": ["terminos", "condiciones", "tyc", "plataforma", "venta", "ecommerce", "marketplace"]
+    },
+    "aviso_privacidad_integral": {
+      "title": "Aviso de Privacidad Integral",
+      "area": "privacy",
+      "primaryReviewer": "privacy",
+      "specialistReviewers": ["documents"],
+      "legalBasis": [
+        "LFPDPPP artículos 15, 16 y 17: aviso de privacidad",
+        "Reglamento de la LFPDPPP: información al titular, finalidades y transferencias",
+        "Lineamientos del Aviso de Privacidad"
+      ],
+      "requiredFactFields": [
+        "responsable.nombre",
+        "responsable.domicilio",
+        "datos_personales.categorias",
+        "finalidades.primarias",
+        "finalidades.secundarias",
+        "transferencias",
+        "arco.medio"
+      ],
+      "keywords": ["aviso de privacidad", "privacidad integral", "datos personales", "lfpdppp"]
+    },
+    "aviso_privacidad_medicos_pacientes": {
+      "title": "Aviso de Privacidad para Médicos y Pacientes",
+      "area": "privacy",
+      "primaryReviewer": "privacy",
+      "specialistReviewers": ["documents"],
+      "legalBasis": [
+        "LFPDPPP: datos personales sensibles y deber de información",
+        "Reglamento de la LFPDPPP: medidas para datos sensibles",
+        "Ley General de Salud: contexto sanitario cuando aplique"
+      ],
+      "requiredFactFields": [
+        "responsable.nombre",
+        "datos_salud.categorias",
+        "titulares.pacientes",
+        "titulares.medicos",
+        "finalidades.salud",
+        "transferencias.salud",
+        "consentimiento.sensible"
+      ],
+      "keywords": ["medicos", "pacientes", "salud", "datos sensibles", "expediente clinico"]
+    },
+    "formato_arco": {
+      "title": "Formato para Ejercer Derechos ARCO",
+      "area": "privacy",
+      "primaryReviewer": "privacy",
+      "specialistReviewers": ["documents"],
+      "legalBasis": [
+        "LFPDPPP artículos 28 a 35: derechos ARCO",
+        "Reglamento de la LFPDPPP: procedimientos y plazos ARCO"
+      ],
+      "requiredFactFields": [
+        "responsable.nombre",
+        "arco.medio",
+        "arco.domicilio_o_correo",
+        "arco.requisitos_identificacion",
+        "arco.plazos_respuesta"
+      ],
+      "keywords": ["arco", "acceso", "rectificacion", "cancelacion", "oposicion"]
+    },
+    "nda": {
+      "title": "NDA / Convenio de Confidencialidad",
+      "area": "contratos",
+      "primaryReviewer": "documents",
+      "specialistReviewers": ["ip_software"],
+      "legalBasis": [
+        "Código Civil Federal: obligaciones contractuales y consentimiento",
+        "Código de Comercio: contratación mercantil cuando las partes sean comerciantes",
+        "Ley Federal de Protección a la Propiedad Industrial: secretos industriales cuando aplique"
+      ],
+      "requiredFactFields": [
+        "partes",
+        "informacion_confidencial.definicion",
+        "plazo.confidencialidad",
+        "uso_permitido",
+        "devolucion_o_destruccion",
+        "penalidad_o_remedios"
+      ],
+      "keywords": ["nda", "confidencialidad", "secreto", "desarrolladores", "proveedor"]
+    },
+    "contrato_desarrollo_software": {
+      "title": "Contrato de Desarrollo de Software",
+      "area": "ip_software",
+      "primaryReviewer": "ip_software",
+      "specialistReviewers": ["documents", "privacy"],
+      "legalBasis": [
+        "Código de Comercio: prestación de servicios mercantiles y contratación entre comerciantes",
+        "Código Civil Federal: prestación de servicios, obligaciones y responsabilidad contractual",
+        "Ley Federal del Derecho de Autor: programas de computación y derechos patrimoniales",
+        "Ley Federal de Protección a la Propiedad Industrial: secretos industriales y signos distintivos cuando aplique"
+      ],
+      "requiredFactFields": [
+        "cliente.nombre",
+        "desarrollador.nombre",
+        "software.alcance",
+        "entregables",
+        "repositorios",
+        "precio",
+        "calendario",
+        "propiedad_intelectual",
+        "soporte",
+        "garantias"
+      ],
+      "keywords": ["contrato de desarrollo", "desarrollo de software", "software", "programador", "desarrollador", "repositorio"]
+    },
+    "convenio_cotitularidad": {
+      "title": "Convenio de Cotitularidad",
+      "area": "ip_software",
+      "primaryReviewer": "ip_software",
+      "specialistReviewers": ["documents"],
+      "legalBasis": [
+        "Ley Federal del Derecho de Autor: cotitularidad y derechos patrimoniales",
+        "Código Civil Federal: comunidad de derechos y obligaciones entre partes",
+        "Código de Comercio: explotación mercantil de activos intangibles cuando aplique"
+      ],
+      "requiredFactFields": [
+        "cotitulares",
+        "activo_intangible",
+        "porcentajes",
+        "facultades_uso",
+        "ingresos",
+        "cesion",
+        "gobierno_decisiones"
+      ],
+      "keywords": ["cotitularidad", "copropiedad", "propiedad conjunta", "derechos patrimoniales"]
+    },
+    "prestacion_servicios": {
+      "title": "Contrato de Prestación de Servicios",
+      "area": "contratos",
+      "primaryReviewer": "documents",
+      "specialistReviewers": ["collections"],
+      "legalBasis": [
+        "Código Civil Federal artículos 2606 a 2615: prestación de servicios profesionales",
+        "Código de Comercio artículo 75: actos de comercio cuando aplique"
+      ],
+      "requiredFactFields": [
+        "prestador.nombre",
+        "cliente.nombre",
+        "servicio.alcance",
+        "honorarios",
+        "vigencia",
+        "entregables"
+      ],
+      "keywords": ["prestacion de servicios", "servicios profesionales", "honorarios"]
+    },
+    "convenio_pagos": {
+      "title": "Convenio de Pagos",
+      "area": "collections",
+      "primaryReviewer": "collections",
+      "specialistReviewers": ["documents"],
+      "legalBasis": [
+        "Código Civil Federal: reconocimiento de adeudo y modalidades de pago",
+        "LGTOC: títulos de crédito cuando se documenten pagos con pagaré"
+      ],
+      "requiredFactFields": ["acreedor", "deudor", "adeudo", "calendario", "incumplimiento"],
+      "keywords": ["convenio de pagos", "calendario de pagos", "adeudo", "abonos"]
+    },
+    "demanda_inicial": {
+      "title": "Demanda Inicial",
+      "area": "litigation",
+      "primaryReviewer": "litigation",
+      "specialistReviewers": ["deadlines", "senior_review"],
+      "legalBasis": [
+        "Código procesal aplicable según materia y jurisdicción",
+        "Código Civil Federal o legislación sustantiva aplicable según acción"
+      ],
+      "requiredFactFields": ["actor", "demandado", "prestaciones", "hechos", "pruebas", "jurisdiccion"],
+      "keywords": ["demanda", "juicio", "prestaciones", "juzgado", "actor", "demandado"]
+    },
+    "pagare": {
+      "title": "Pagaré",
+      "area": "collections",
+      "primaryReviewer": "collections",
+      "specialistReviewers": ["documents"],
+      "legalBasis": [
+        "LGTOC artículos 170 a 174: requisitos del pagaré"
+      ],
+      "requiredFactFields": ["suscriptor", "beneficiario", "monto", "fecha_pago", "lugar_pago"],
+      "keywords": ["pagare", "titulo de credito", "promesa incondicional de pago"]
+    },
+    "acta_asamblea": {
+      "title": "Acta de Asamblea",
+      "area": "corporativo",
+      "primaryReviewer": "documents",
+      "specialistReviewers": ["senior_review"],
+      "legalBasis": ["LGSM: asambleas, acuerdos sociales y formalidades corporativas"],
+      "requiredFactFields": ["sociedad", "accionistas", "orden_dia", "acuerdos", "quorum"],
+      "keywords": ["acta de asamblea", "asamblea", "accionistas", "acuerdos sociales"]
+    },
+    "contrato_trabajo": {
+      "title": "Contrato Individual de Trabajo",
+      "area": "laboral",
+      "primaryReviewer": "documents",
+      "specialistReviewers": ["senior_review"],
+      "legalBasis": ["Ley Federal del Trabajo artículos 20 a 39: relación y contrato individual de trabajo"],
+      "requiredFactFields": ["patron", "trabajador", "puesto", "salario", "jornada", "lugar_trabajo"],
+      "keywords": ["contrato de trabajo", "trabajador", "patron", "salario", "jornada"]
+    }
+  },
+  "packages": {
+    "software_health_platform": {
+      "title": "Paquete plataforma salud/software",
+      "requiredDocuments": [
+        "terminos_condiciones",
+        "aviso_privacidad_integral",
+        "aviso_privacidad_medicos_pacientes",
+        "formato_arco",
+        "nda",
+        "contrato_desarrollo_software",
+        "convenio_cotitularidad"
+      ],
+      "keywords": ["salud", "medicos", "pacientes", "software", "desarrolladores", "plataforma"]
+    }
+  }
+}

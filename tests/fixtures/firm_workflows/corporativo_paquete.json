@@ -1,0 +1,28 @@
+{
+  "id": "corporativo_paquete",
+  "matter": {
+    "id": "MAT-102",
+    "client": "Cliente Corporativo Demo",
+    "type": "corporate"
+  },
+  "steps": [
+    {
+      "role": "master",
+      "title": "Generar paquete MAT-102: actas y estatutos",
+      "expected_prefix": "MASTER WORK PRODUCT:",
+      "required_artifacts": ["MATTER_STATUS.md", "ROUTING_DECISION.json"]
+    },
+    {
+      "role": "documents",
+      "title": "Generar documento MAT-102: acta_asamblea",
+      "expected_prefix": "LEGAL WORK PRODUCT:",
+      "required_artifacts": ["EVIDENCE_MAP.md", "DELIVERABLE_MANIFEST.json", "LEGAL_QA.md"]
+    },
+    {
+      "role": "senior_review",
+      "title": "Revision senior MAT-102",
+      "expected_prefix": "SENIOR REVIEW WORK PRODUCT:",
+      "required_artifacts": ["SENIOR_REVIEW.md", "CLIENT_DELIVERY_DECISION.md"]
+    }
+  ]
+}

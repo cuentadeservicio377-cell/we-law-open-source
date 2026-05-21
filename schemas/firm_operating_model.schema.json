@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Firm Operating Model",
+  "type": "object",
+  "required": [
+    "firm",
+    "allowedMatterStatuses",
+    "allowedPackageStatuses",
+    "allowedIssueStatuses",
+    "missingInfoTaxonomy",
+    "approvalTypes",
+    "roles"
+  ],
+  "properties": {
+    "firm": {
+      "type": "object",
+      "required": [
+        "name",
+        "operatingSystem",
+        "masterRole",
+        "matterOwnerRole",
+        "paperclipAdapterType",
+        "controller"
+      ],
+      "properties": {
+        "name": { "type": "string" },
+        "operatingSystem": { "type": "string" },
+        "masterRole": { "type": "string" },
+        "matterOwnerRole": { "type": "string" },
+        "paperclipAdapterType": { "type": "string", "enum": ["hermes_local"] },
+        "controller": {
+          "type": "object",
+          "required": ["displayName", "paperclipWorker", "responsibilities"],
+          "properties": {
+            "displayName": { "type": "string" },
+            "paperclipWorker": { "type": "boolean" },
+            "responsibilities": {
+              "type": "array",
+              "items": { "type": "string" },
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "allowedMatterStatuses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "allowedPackageStatuses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "allowedIssueStatuses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "missingInfoTaxonomy": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["para_avanzar", "para_firma", "no_bloqueante"] },
+      "minItems": 3,
+      "uniqueItems": true
+    },
+    "approvalTypes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "roles": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "displayName",
+          "paperclipCommentPrefix",
+          "responsibilities",
+          "allowedStatuses",
+          "requiredArtifacts",
+          "completionGates"
+        ],
+        "properties": {
+          "displayName": { "type": "string" },
+          "paperclipCommentPrefix": { "type": "string", "pattern": "^[A-Z ]+WORK PRODUCT:$" },
+          "responsibilities": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "allowedStatuses": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "requiredArtifacts": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["name", "type", "required"],
+              "properties": {
+                "name": { "type": "string" },
+                "type": { "type": "string" },
+                "required": { "type": "boolean" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "completionGates": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

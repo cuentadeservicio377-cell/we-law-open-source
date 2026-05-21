@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Senior Review",
+  "type": "object",
+  "required": ["package_status", "blocker_count", "placeholder_count", "decision"],
+  "properties": {
+    "package_status": {
+      "type": "string",
+      "enum": ["draft", "review", "client-deliverable", "blocked", "signature-ready"]
+    },
+    "blocker_count": { "type": "integer", "minimum": 0 },
+    "placeholder_count": { "type": "integer", "minimum": 0 },
+    "decision": { "type": "string" },
+    "risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": true
+}

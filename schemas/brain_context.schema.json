@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Brain Context",
+  "type": "object",
+  "required": ["kind", "client", "matter", "processes", "context_markdown", "confidence"],
+  "properties": {
+    "kind": {"const": "BRAIN_CONTEXT"},
+    "client": {"type": "object"},
+    "matter": {"type": "object"},
+    "processes": {"type": "array", "items": {"type": "object"}},
+    "signals": {"type": "array", "items": {"type": "object"}},
+    "open_threads": {"type": "array", "items": {"type": "string"}},
+    "contradictions": {"type": "array", "items": {"type": "object"}},
+    "context_markdown": {"type": "string"},
+    "confidence": {"type": "number"}
+  },
+  "additionalProperties": true
+}

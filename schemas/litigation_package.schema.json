@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Litigation Package",
+  "type": "object",
+  "required": ["case_theory", "procedural_posture", "evidence_table", "filing_package_manifest", "deadline_risk"],
+  "properties": {
+    "case_theory": { "type": "string" },
+    "procedural_posture": { "type": "string" },
+    "evidence_table": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "filing_package_manifest": {
+      "type": "object",
+      "required": ["files"],
+      "properties": {
+        "files": { "type": "array" }
+      },
+      "additionalProperties": true
+    },
+    "deadline_risk": { "type": "string" }
+  },
+  "additionalProperties": true
+}

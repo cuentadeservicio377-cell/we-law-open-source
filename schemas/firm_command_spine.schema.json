@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Firm Command Spine",
+  "type": "object",
+  "required": [
+    "kind",
+    "schemaVersion",
+    "firm",
+    "actors",
+    "chainOfCommand",
+    "lifecycleStages",
+    "requiredArtifacts",
+    "approvalGateTypes",
+    "dashboardPrinciples"
+  ],
+  "properties": {
+    "kind": { "type": "string", "const": "firm_command_spine" },
+    "schemaVersion": { "type": "string" },
+    "firm": { "type": "string" },
+    "actors": {
+      "type": "object",
+      "minProperties": 5,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["displayName", "authority", "responsibilities"],
+        "properties": {
+          "displayName": { "type": "string" },
+          "authority": { "type": "string" },
+          "responsibilities": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "chainOfCommand": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 5,
+      "uniqueItems": true
+    },
+    "lifecycleStages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "owner", "description"],
+        "properties": {
+          "id": { "type": "string" },
+          "owner": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "requiredArtifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "approvalGateTypes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "dashboardPrinciples": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}

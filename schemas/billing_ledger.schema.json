@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Billing Ledger",
+  "type": "object",
+  "required": ["matter_id", "quote_amount", "retainer_required", "paid_amount", "balance", "invoice_status", "engagement_status", "work_authorized", "stop_work_triggers"],
+  "properties": {
+    "matter_id": { "type": "string", "pattern": "^MAT-[0-9]{3,}$" },
+    "quote_amount": { "type": "number" },
+    "retainer_required": { "type": "number" },
+    "paid_amount": { "type": "number" },
+    "balance": { "type": "number" },
+    "invoice_status": { "type": "string" },
+    "engagement_status": { "type": "string" },
+    "work_authorized": { "type": "boolean" },
+    "stop_work_triggers": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "payments": {
+      "type": "array",
+      "items": { "type": "object" }
+    }
+  },
+  "additionalProperties": true
+}

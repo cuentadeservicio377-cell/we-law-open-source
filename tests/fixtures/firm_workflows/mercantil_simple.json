@@ -1,0 +1,28 @@
+{
+  "id": "mercantil_simple",
+  "matter": {
+    "id": "MAT-101",
+    "client": "Cliente Mercantil Demo",
+    "type": "collection"
+  },
+  "steps": [
+    {
+      "role": "intake",
+      "title": "Nuevo asunto MAT-101",
+      "expected_prefix": "INTAKE WORK PRODUCT:",
+      "required_artifacts": ["INTAKE_SUMMARY.md", "MISSING_INFO.json"]
+    },
+    {
+      "role": "documents",
+      "title": "Generar documento MAT-101: pagare",
+      "expected_prefix": "LEGAL WORK PRODUCT:",
+      "required_artifacts": ["EVIDENCE_MAP.md", "LEGAL_QA.md"]
+    },
+    {
+      "role": "collections",
+      "title": "Anticipo recibido MAT-101",
+      "expected_prefix": "BILLING WORK PRODUCT:",
+      "required_artifacts": ["BILLING_LEDGER.json", "WORK_AUTHORIZATION_STATUS.md"]
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "source": "willow-portable-adoption",
+  "triggers": [
+    {
+      "id": "nuevo_asunto",
+      "targetRole": "intake",
+      "requiredFields": ["clientName", "matterDescription"],
+      "optionalFields": ["matterType", "source"],
+      "issueTitlePattern": "Nuevo asunto: {clientName}",
+      "eventType": "intake",
+      "approvalType": "engagement",
+      "allowedArtifacts": ["INTAKE_SUMMARY.md", "MISSING_INFO.json", "CLIENT_MATTER_LINK.json"],
+      "completionGate": "Client and matter are opened or explicit blockers are classified.",
+      "examples": [
+        "nuevo_asunto clientName=\"Cliente Demo\" matterDescription=\"Contrato SaaS\"",
+        "Fui a ver a Cliente Demo y necesita contrato"
+      ]
+    },
+    {
+      "id": "generar_documento",
+      "targetRole": "documents",
+      "requiredFields": ["matterId", "documentType"],
+      "optionalFields": ["templateId", "sourceFolder", "editorialStyle"],
+      "issueTitlePattern": "Generar documento {matterId}: {documentType}",
+      "eventType": "document_requested",
+      "approvalType": "document",
+      "allowedArtifacts": ["EVIDENCE_MAP.md", "DATA_LEDGER.json", "CORRECTIONS_APPLIED.md", "PLACEHOLDER_REPORT.md", "DELIVERABLE_MANIFEST.json", "LEGAL_QA.md"],
+      "completionGate": "Document package has evidence, corrections, placeholder report and legal QA before delivery.",
+      "examples": [
+        "generar_documento MAT-DEMO-001 documentType=nda",
+        "MAT-DEMO-001 genera contrato de desarrollo"
+      ]
+    },
+    {
+      "id": "generar_paquete",
+      "targetRole": "master",
+      "requiredFields": ["matterId", "packageName"],
+      "optionalFields": ["documentTypes", "deliveryFolder"],
+      "issueTitlePattern": "Generar paquete {matterId}: {packageName}",
+      "eventType": "package_requested",
+      "approvalType": "package",
+      "allowedArtifacts": ["MATTER_STATUS.md", "ROUTING_DECISION.json", "APPROVAL_REQUESTS.md"],
+      "completionGate": "Package is integrated, blockers are stated and approval is requested before client delivery.",
+      "examples": [
+        "generar_paquete MAT-DEMO-001 packageName=Kami",
+        "MAT-DEMO-001 prepara paquete completo para cliente"
+      ]
+    },
+    {
+      "id": "tarea",
+      "targetRole": "master",
+      "requiredFields": ["matterId", "task"],
+      "optionalFields": ["priority", "owner"],
+      "issueTitlePattern": "Tarea {matterId}: {task}",
+      "eventType": "task_created",
+      "approvalType": null,
+      "allowedArtifacts": ["MATTER_STATUS.md", "ROUTING_DECISION.json"],
+      "completionGate": "Task is routed to the correct role or marked blocked with reason.",
+      "examples": [
+        "tarea MAT-DEMO-001 task=\"revisar carpeta de Drive\"",
+        "MAT-DEMO-001 revisa que falta"
+      ]
+    },
+    {
+      "id": "plazo_judicial",
+      "targetRole": "deadlines",
+      "requiredFields": ["matterId", "deadlineName"],
+      "optionalFields": ["dueDate", "source"],
+      "issueTitlePattern": "Plazo judicial {matterId}: {deadlineName}",
+      "eventType": "deadline_added",
+      "approvalType": null,
+      "allowedArtifacts": ["DEADLINE_REGISTER.json", "REMINDER_PLAN.md", "DEADLINE_QA.md"],
+      "completionGate": "Deadline has owner, date/source or a missing-date blocker.",
+      "examples": [
+        "plazo_judicial MAT-DEMO-001 deadlineName=contestacion dueDate=2026-05-22",
+        "MAT-DEMO-001 vence plazo para contestar demanda"
+      ]
+    },
+    {
+      "id": "actualizacion",
+      "targetRole": "master",
+      "requiredFields": ["matterId", "summary"],
+      "optionalFields": ["source"],
+      "issueTitlePattern": "Actualizacion {matterId}: {summary}",
+      "eventType": "matter_updated",
+      "approvalType": null,
+      "allowedArtifacts": ["MATTER_STATUS.md"],
+      "completionGate": "Update is recorded in the matter status and routed if it creates work.",
+      "examples": [
+        "actualizacion MAT-DEMO-001 summary=\"cliente envio documentos\"",
+        "MAT-DEMO-001 el cliente ya mando la identificacion"
+      ]
+    },
+    {
+      "id": "cerrar_asunto",
+      "targetRole": "master",
+      "requiredFields": ["matterId"],
+      "optionalFields": ["closeReason"],
+      "issueTitlePattern": "Cerrar asunto {matterId}",
+      "eventType": "matter_close_requested",
+      "approvalType": "matter_close",
+      "allowedArtifacts": ["MATTER_STATUS.md", "APPROVAL_REQUESTS.md"],
+      "completionGate": "Matter close is approved and open legal, deadline and billing blockers are resolved or recorded.",
+      "examples": [
+        "cerrar_asunto MAT-DEMO-001 closeReason=entregado",
+        "MAT-DEMO-001 ya quedo entregado, cerrar asunto"
+      ]
+    },
+    {
+      "id": "anticipo_recibido",
+      "targetRole": "collections",
+      "requiredFields": ["matterId"],
+      "optionalFields": ["amount", "source"],
+      "issueTitlePattern": "Anticipo recibido {matterId}",
+      "eventType": "payment_received",
+      "approvalType": "payment",
+      "allowedArtifacts": ["PAYMENT_LEDGER.json", "COLLECTION_STATUS.md", "BILLING_QA.md"],
+      "completionGate": "Payment is recorded with source or approval; no amount is invented.",
+      "examples": [
+        "anticipo_recibido MAT-DEMO-001 amount=15000",
+        "MAT-DEMO-001 ya pago anticipo"
+      ]
+    },
+    {
+      "id": "abono_recibido",
+      "targetRole": "collections",
+      "requiredFields": ["matterId"],
+      "optionalFields": ["amount", "source"],
+      "issueTitlePattern": "Abono recibido {matterId}",
+      "eventType": "payment_received",
+      "approvalType": "payment",
+      "allowedArtifacts": ["PAYMENT_LEDGER.json", "COLLECTION_STATUS.md", "BILLING_QA.md"],
+      "completionGate": "Partial payment is recorded with source or approval; no amount is invented.",
+      "examples": [
+        "abono_recibido MAT-DEMO-001 amount=5000",
+        "MAT-DEMO-001 recibimos abono"
+      ]
+    },
+    {
+      "id": "pago_final_recibido",
+      "targetRole": "collections",
+      "requiredFields": ["matterId"],
+      "optionalFields": ["amount", "source"],
+      "issueTitlePattern": "Pago final recibido {matterId}",
+      "eventType": "payment_received",
+      "approvalType": "payment",
+      "allowedArtifacts": ["PAYMENT_LEDGER.json", "COLLECTION_STATUS.md", "BILLING_QA.md"],
+      "completionGate": "Final payment is recorded before financial close.",
+      "examples": [
+        "pago_final_recibido MAT-DEMO-001 amount=20000",
+        "MAT-DEMO-001 ya liquidaron"
+      ]
+    },
+    {
+      "id": "reporte_semanal",
+      "targetRole": "admin",
+      "requiredFields": ["week"],
+      "optionalFields": ["focus"],
+      "issueTitlePattern": "Reporte semanal We Law: {week}",
+      "eventType": "report_requested",
+      "approvalType": null,
+      "allowedArtifacts": ["REPORT.md", "KNOWLEDGE_UPDATE.md"],
+      "completionGate": "Report separates facts, blockers and recommended next actions.",
+      "examples": [
+        "reporte_semanal week=2026-W21",
+        "haz reporte semanal del despacho"
+      ]
+    },
+    {
+      "id": "reporte_matter",
+      "targetRole": "admin",
+      "requiredFields": ["matterId"],
+      "optionalFields": ["focus"],
+      "issueTitlePattern": "Reporte {matterId}",
+      "eventType": "report_requested",
+      "approvalType": null,
+      "allowedArtifacts": ["REPORT.md", "KNOWLEDGE_UPDATE.md"],
+      "completionGate": "Matter report summarizes current state, blockers, deadlines and next actions.",
+      "examples": [
+        "reporte_matter MAT-DEMO-001",
+        "MAT-DEMO-001 dame reporte"
+      ]
+    },
+    {
+      "id": "leccion_aprendida",
+      "targetRole": "admin",
+      "requiredFields": ["matterId", "topic"],
+      "optionalFields": ["templateId"],
+      "issueTitlePattern": "Leccion aprendida {matterId}: {topic}",
+      "eventType": "lesson_learned",
+      "approvalType": "template_update",
+      "allowedArtifacts": ["KNOWLEDGE_UPDATE.md", "TEMPLATE_CHANGE_REQUEST.json", "REPORT.md"],
+      "completionGate": "Template or knowledge change remains a proposal until approved.",
+      "examples": [
+        "leccion_aprendida MAT-DEMO-001 topic=privacidad",
+        "MAT-DEMO-001 guarda leccion aprendida para plantillas"
+      ]
+    }
+  ]
+}

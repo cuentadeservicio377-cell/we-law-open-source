@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Brain Update Proposal",
+  "type": "object",
+  "required": ["kind", "proposed_by", "client_id", "matter_id", "facts", "timeline_entries", "contradictions", "source_artifacts"],
+  "properties": {
+    "kind": {"const": "BRAIN_UPDATE_PROPOSAL"},
+    "proposed_by": {"type": "string"},
+    "client_id": {"type": "string"},
+    "matter_id": {"type": "string"},
+    "facts": {"type": "array", "items": {"type": "object"}},
+    "timeline_entries": {"type": "array", "items": {"type": "object"}},
+    "contradictions": {"type": "array", "items": {"type": "object"}},
+    "missing_info": {"type": "array", "items": {"type": "object"}},
+    "source_artifacts": {"type": "array", "items": {"type": "string"}},
+    "requires_review": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

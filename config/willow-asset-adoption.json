@@ -1,0 +1,283 @@
+{
+  "asset": {
+    "name": "paperclip-willow-portable",
+    "sourcePath": "/Users/local-user/Documents/Claude code/Paperclip Master/portable/paperclip-willow-portable",
+    "mode": "reference_only",
+    "dependencyPolicy": "Hermes We Law must not import or depend on the old Willow runtime."
+  },
+  "adopt": {
+    "operatingPrinciples": [
+      {
+        "id": "despacho_legal_owner",
+        "summary": "Despacho Legal owns the main matter and specialists report back to it.",
+        "targetStory": "Story 1"
+      },
+      {
+        "id": "one_issue_per_action",
+        "summary": "Each concrete action becomes a Paperclip issue carrying MAT-NNN in the title.",
+        "targetStory": "Story 3"
+      },
+      {
+        "id": "classified_missing_info",
+        "summary": "Missing data is classified as para_avanzar, para_firma, or no_bloqueante.",
+        "targetStory": "Story 5"
+      },
+      {
+        "id": "dry_run_first_workspace",
+        "summary": "Google Workspace bootstrap must support dry-run before writing files or sheets.",
+        "targetStory": "Story 8"
+      },
+      {
+        "id": "approval_before_external_effect",
+        "summary": "Engagements, documents, packages, payments, closing, and template updates require approval gates.",
+        "targetStory": "Story 7"
+      }
+    ],
+    "roles": [
+      {
+        "willowRole": "Despacho Legal",
+        "hermesRole": "master",
+        "paperclipWorker": "Despacho Legal",
+        "notes": "Central owner, integrator, reviewer, and project manager."
+      },
+      {
+        "willowRole": "Recepcion / Intake",
+        "hermesRole": "intake",
+        "paperclipWorker": "Recepcionista Juridico",
+        "notes": "Creates or reuses client and matter context, then asks only missing operational facts."
+      },
+      {
+        "willowRole": "Documentos",
+        "hermesRole": "documents",
+        "paperclipWorker": "Documentos Legales",
+        "notes": "Drafts, redlines, extracts evidence, tracks corrections, and blocks signature when facts are missing."
+      },
+      {
+        "willowRole": "Litigio",
+        "hermesRole": "litigation",
+        "paperclipWorker": "Litigio",
+        "notes": "Produces litigation strategy, pleadings, exhibits, and judicial deadline handoff."
+      },
+      {
+        "willowRole": "Plazos Judiciales",
+        "hermesRole": "deadlines",
+        "paperclipWorker": "Plazos",
+        "notes": "Controls due dates, reminders, legal deadlines, and escalation state."
+      },
+      {
+        "willowRole": "Finanzas / Cobranza",
+        "hermesRole": "collections",
+        "paperclipWorker": "Cobranza",
+        "notes": "Tracks retainers, partial payments, final payments, and collection follow-up."
+      },
+      {
+        "willowRole": "Biblioteca / Aprendizaje",
+        "hermesRole": "admin",
+        "paperclipWorker": "Admin Biblioteca",
+        "notes": "Maintains templates, lessons learned, reports, and knowledge base proposals."
+      }
+    ],
+    "triggers": [
+      {
+        "id": "nuevo_asunto",
+        "defaultWorker": "Recepcionista Juridico",
+        "targetIssuePattern": "Nuevo asunto MAT-{matterNumber}",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      },
+      {
+        "id": "generar_documento",
+        "defaultWorker": "Documentos Legales",
+        "targetIssuePattern": "Generar documento MAT-{matterNumber}: {documentType}",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      },
+      {
+        "id": "generar_paquete",
+        "defaultWorker": "Despacho Legal",
+        "targetIssuePattern": "Generar paquete MAT-{matterNumber}: {packageName}",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      },
+      {
+        "id": "tarea",
+        "defaultWorker": "Despacho Legal",
+        "targetIssuePattern": "Tarea MAT-{matterNumber}: {task}",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      },
+      {
+        "id": "plazo_judicial",
+        "defaultWorker": "Plazos",
+        "targetIssuePattern": "Plazo judicial MAT-{matterNumber}: {deadlineName}",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      },
+      {
+        "id": "actualizacion",
+        "defaultWorker": "Despacho Legal",
+        "targetIssuePattern": "Actualizacion MAT-{matterNumber}: {summary}",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      },
+      {
+        "id": "cerrar_asunto",
+        "defaultWorker": "Despacho Legal",
+        "targetIssuePattern": "Cerrar asunto MAT-{matterNumber}",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      },
+      {
+        "id": "anticipo_recibido",
+        "defaultWorker": "Cobranza",
+        "targetIssuePattern": "Anticipo recibido MAT-{matterNumber}",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      },
+      {
+        "id": "abono_recibido",
+        "defaultWorker": "Cobranza",
+        "targetIssuePattern": "Abono recibido MAT-{matterNumber}",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      },
+      {
+        "id": "pago_final_recibido",
+        "defaultWorker": "Cobranza",
+        "targetIssuePattern": "Pago final recibido MAT-{matterNumber}",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      },
+      {
+        "id": "reporte_semanal",
+        "defaultWorker": "Admin Biblioteca",
+        "targetIssuePattern": "Reporte semanal We Law",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      },
+      {
+        "id": "reporte_matter",
+        "defaultWorker": "Admin Biblioteca",
+        "targetIssuePattern": "Reporte MAT-{matterNumber}",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      },
+      {
+        "id": "leccion_aprendida",
+        "defaultWorker": "Admin Biblioteca",
+        "targetIssuePattern": "Leccion aprendida MAT-{matterNumber}: {topic}",
+        "futureConfig": "config/legal-trigger-catalog.json"
+      }
+    ],
+    "googleWorkspace": {
+      "targetStory": "Story 8",
+      "writePolicy": "dry_run_first",
+      "root": "We Law S.C.",
+      "folders": [
+        "Clientes",
+        "Asuntos",
+        "Plantillas",
+        "Biblioteca"
+      ],
+      "sheets": [
+        "Clientes",
+        "Asuntos",
+        "Finanzas"
+      ],
+      "adapterFallbackOrder": [
+        "workspace_mcp",
+        "gws_cli",
+        "local_manifest"
+      ],
+      "forbidden": [
+        "hardcoded_real_drive_ids",
+        "direct_write_without_approval",
+        "copied_credentials"
+      ]
+    },
+    "templateSeeds": [
+      "ficha_asunto",
+      "checklist_faltantes",
+      "demanda_inicial",
+      "estrategia_litigio",
+      "prestacion_servicios",
+      "terminos_condiciones",
+      "convenio_pagos",
+      "bitacora_entregas",
+      "garantias",
+      "calendario_cobranza",
+      "carta_cobranza",
+      "arrendamiento",
+      "pagare",
+      "aviso_privacidad",
+      "formato_arco",
+      "nda",
+      "confidencialidad",
+      "expediente_materialidad",
+      "carta_sat",
+      "contrato_trabajo",
+      "reglamento_interior",
+      "finiquito",
+      "nda_laboral",
+      "acta_asamblea",
+      "poder_notarial",
+      "estatutos_sociales",
+      "convenio_accionistas"
+    ],
+    "regressionScenarios": [
+      {
+        "id": "mercantil_simple",
+        "futureFixture": "tests/fixtures/firm_workflows/mercantil_simple.json",
+        "coverage": [
+          "intake",
+          "engagement",
+          "contract_or_demand_package",
+          "client_delivery"
+        ]
+      },
+      {
+        "id": "corporativo_paquete",
+        "futureFixture": "tests/fixtures/firm_workflows/corporativo_paquete.json",
+        "coverage": [
+          "multi_document_package",
+          "template_use",
+          "approval_gate",
+          "workspace_delivery"
+        ]
+      },
+      {
+        "id": "laboral_litigio",
+        "futureFixture": "tests/fixtures/firm_workflows/laboral_litigio.json",
+        "coverage": [
+          "litigation_strategy",
+          "deadline_control",
+          "collections",
+          "senior_review"
+        ]
+      }
+    ],
+    "approvals": [
+      "engagement",
+      "document",
+      "package",
+      "payment",
+      "matter_close",
+      "template_update"
+    ]
+  },
+  "reject": [
+    {
+      "id": "old_runtime",
+      "reason": "The current Hermes We Law runtime must remain fresh and isolated."
+    },
+    {
+      "id": "env_tokens_snapshots_db",
+      "reason": "Secrets, snapshots, databases, and machine-specific state are not portable design assets."
+    },
+    {
+      "id": "hardcoded_google_ids",
+      "reason": "Workspace adapters must discover or receive configured IDs safely."
+    },
+    {
+      "id": "direct_write_scripts",
+      "reason": "All external write paths need dry-run and approval gates."
+    },
+    {
+      "id": "prompt_only_lawyers",
+      "reason": "Paperclip workers need artifact contracts and QA gates, not just persona prompts."
+    }
+  ],
+  "safetyChecks": [
+    "No files are copied from the old Willow repository.",
+    "No credentials or real client records are included.",
+    "All adopted concepts point to future Hermes We Law stories."
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Legal Trigger Catalog",
+  "type": "object",
+  "required": ["version", "source", "triggers"],
+  "properties": {
+    "version": { "type": "integer" },
+    "source": { "type": "string" },
+    "triggers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "targetRole",
+          "requiredFields",
+          "optionalFields",
+          "issueTitlePattern",
+          "eventType",
+          "approvalType",
+          "allowedArtifacts",
+          "completionGate",
+          "examples"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "targetRole": { "type": "string" },
+          "requiredFields": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "optionalFields": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "issueTitlePattern": { "type": "string" },
+          "eventType": { "type": "string" },
+          "approvalType": {
+            "type": ["string", "null"]
+          },
+          "allowedArtifacts": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "completionGate": { "type": "string" },
+          "examples": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

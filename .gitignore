@@ -1,0 +1,37 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# builds
+.next/
+dist/
+coverage/
+
+# caches
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+
+# local/private runtime
+.env
+.env.*
+!.env.example
+*.log
+screenlog.*
+runtime/paperclip/home/**
+runtime/paperclip/source/**
+runtime/reports/**
+workspace/generated/**
+!workspace/generated/.gitkeep
+workspace/matters/**
+!workspace/matters/.gitkeep
+workspace/inbox/**
+!workspace/inbox/.gitkeep
+workspace/clientes/**
+!workspace/clientes/.gitkeep
+*token*.json
+*credential*.json
+*service-account*.json
+*.docx
+*.pdf

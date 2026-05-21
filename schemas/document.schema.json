@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Document",
+  "type": "object",
+  "required": ["id", "matter_id", "type", "title", "status"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^DOC-[0-9]{3,}$" },
+    "matter_id": { "type": "string", "pattern": "^MAT-[0-9]{3,}$" },
+    "type": { "type": "string" },
+    "title": { "type": "string" },
+    "status": { "type": "string", "enum": ["borrador", "revision", "aprobado", "final"] },
+    "version": { "type": "string" },
+    "drive_path": { "type": "string" }
+  },
+  "additionalProperties": true
+}

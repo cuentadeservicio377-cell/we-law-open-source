@@ -1,0 +1,20 @@
+[
+  {
+    "id": "MAT-DEMO-HEALTH-SAAS",
+    "client_id": "CLI-DEMO-HEALTH",
+    "cliente": "Northstar Health Demo LLC",
+    "tipo": "contractual",
+    "estado": "blocked",
+    "descripcion": "SaaS health platform legal package",
+    "fase": "review_gates",
+    "honorarios": 125000,
+    "engagement": "pendiente",
+    "drive_path": "demo://workspace/clients/CLI-DEMO-HEALTH/matters/MAT-DEMO-HEALTH-SAAS",
+    "source_folder_url": "demo://workspace/folders/demo-source-folder",
+    "control_master_url": "demo://workspace/sheets/control-master",
+    "senior_status": "blocked",
+    "legacy_aliases": [
+      "DEMO-MIGRATION-001"
+    ]
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Paperclip Control Payload",
+  "type": "object",
+  "required": ["kind", "company_id", "body"],
+  "properties": {
+    "kind": {
+      "type": "string",
+      "enum": ["issue", "task", "comment", "approval", "agent_config"]
+    },
+    "company_id": { "type": "string" },
+    "matter_id": { "type": "string" },
+    "body": { "type": "object" }
+  },
+  "additionalProperties": false
+}

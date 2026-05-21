@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Client Workspace Record",
+  "type": "object",
+  "required": ["client", "matter", "workspace", "missing_info", "required_documents", "senior_status"],
+  "properties": {
+    "client": {
+      "type": "object",
+      "required": ["id", "nombre", "estado"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^CLI-" },
+        "nombre": { "type": "string", "minLength": 1 },
+        "estado": { "type": "string" },
+        "legacy_aliases": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "matter": {
+      "type": "object",
+      "required": ["id", "client_id", "descripcion", "estado"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^MAT-" },
+        "client_id": { "type": "string", "pattern": "^CLI-" },
+        "descripcion": { "type": "string", "minLength": 1 },
+        "estado": { "type": "string" },
+        "legacy_aliases": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "workspace": {
+      "type": "object",
+      "required": ["read", "write_gate", "idempotency"],
+      "properties": {
+        "read": { "type": "object" },
+        "write_gate": { "type": "object" },
+        "source_folder": { "type": ["object", "null"] },
+        "control_master": { "type": "object" },
+        "packet_file": { "type": "object" },
+        "idempotency": {
+          "type": "object",
+          "required": ["key"],
+          "properties": {
+            "key": { "type": "string", "pattern": "^INTAKE-" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "missing_info": { "type": "array", "items": { "type": "object" } },
+    "required_documents": { "type": "array", "items": { "type": "string" } },
+    "senior_status": {
+      "type": "object",
+      "required": ["status", "decision"],
+      "properties": {
+        "status": { "type": "string" },
+        "decision": { "type": "string" },
+        "reason": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

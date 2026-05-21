@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Live File",
+  "type": "object",
+  "required": ["matter_id", "client_id", "estado_asunto", "fase_operativa"],
+  "properties": {
+    "matter_id": { "type": "string" },
+    "client_id": { "type": "string" },
+    "estado_asunto": { "type": "string" },
+    "fase_operativa": { "type": "string" },
+    "docs_existentes": { "type": "array", "items": { "type": "string" } },
+    "docs_pendientes": { "type": "array", "items": { "type": "string" } },
+    "faltantes_para_avanzar": { "type": "array", "items": { "type": "string" } },
+    "faltantes_para_firma": { "type": "array", "items": { "type": "string" } },
+    "faltantes_no_bloqueantes": { "type": "array", "items": { "type": "string" } },
+    "workspace": { "type": "string" }
+  },
+  "additionalProperties": true
+}

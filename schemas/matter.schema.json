@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Matter",
+  "type": "object",
+  "required": ["id", "client_id", "cliente", "tipo", "estado", "descripcion"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^MAT-[0-9]{3,}$" },
+    "client_id": { "type": "string", "pattern": "^CLI-[0-9]{3,}$" },
+    "cliente": { "type": "string" },
+    "tipo": { "type": "string" },
+    "estado": { "type": "string", "enum": ["prospecto", "activo", "en_cierre", "cerrado", "rechazado"] },
+    "descripcion": { "type": "string" },
+    "fase": { "type": "string" },
+    "honorarios": { "type": "number" },
+    "engagement": { "type": "string", "enum": ["generado", "pendiente", "aprobado", "no_aplica"] },
+    "drive_path": { "type": "string" }
+  },
+  "additionalProperties": true
+}

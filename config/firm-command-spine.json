@@ -1,0 +1,125 @@
+{
+  "kind": "firm_command_spine",
+  "schemaVersion": "1",
+  "firm": "We Law S.C.",
+  "actors": {
+    "pablo": {
+      "displayName": "the lawyer / Socio dueno",
+      "authority": "owner",
+      "responsibilities": [
+        "Give instructions through Telegram or dashboard.",
+        "Approve client-facing delivery, filing, signature and Workspace writeback gates.",
+        "Receive concise partner briefings from Hermes."
+      ]
+    },
+    "hermes": {
+      "displayName": "Hermes / Managing Partner",
+      "authority": "managing_partner",
+      "responsibilities": [
+        "Receive the lawyer's instruction and resolve client, matter, process and urgency.",
+        "Create command records, matter briefs and delegation plans.",
+        "Control Paperclip staff, Workspace artifacts, approvals and final reporting."
+      ]
+    },
+    "paperclip_staff": {
+      "displayName": "Paperclip / Equipo juridico",
+      "authority": "legal_staff",
+      "responsibilities": [
+        "Execute assigned legal work through the 14 firm roles.",
+        "Return source-backed artifacts, blockers, missing data and review decisions.",
+        "Never bypass Hermes or mark client delivery complete without required gates."
+      ]
+    },
+    "workspace": {
+      "displayName": "Google Workspace / Oficina viva",
+      "authority": "office_system",
+      "responsibilities": [
+        "Store sources, transcripts, live files, control master rows, drafts, review packages and deliverables.",
+        "Expose Drive, Docs, Sheets, Calendar and Tasks state through approved adapters.",
+        "Keep local fallback shapes compatible when live credentials are unavailable."
+      ]
+    },
+    "dashboard": {
+      "displayName": "Dashboard / Mesa del socio",
+      "authority": "control_desk",
+      "responsibilities": [
+        "Show the lawyer what Hermes is directing, who is working, where the work lives and what needs approval.",
+        "Represent actions as instructions to Hermes, not direct raw system writes.",
+        "Make unauthorized, blocked and pending states obvious."
+      ]
+    }
+  },
+  "chainOfCommand": [
+    "pablo",
+    "hermes",
+    "paperclip_staff",
+    "workspace",
+    "dashboard"
+  ],
+  "lifecycleStages": [
+    {
+      "id": "receive_instruction",
+      "owner": "hermes",
+      "description": "Hermes receives the lawyer's instruction from Telegram or dashboard."
+    },
+    {
+      "id": "resolve_context",
+      "owner": "hermes",
+      "description": "Hermes resolves client, matter, live memory, legal process and urgency."
+    },
+    {
+      "id": "open_command_record",
+      "owner": "hermes",
+      "description": "Hermes writes an auditable command record and matter brief."
+    },
+    {
+      "id": "delegate_staff_work",
+      "owner": "hermes",
+      "description": "Hermes creates Paperclip staff assignments with role-specific context packages."
+    },
+    {
+      "id": "execute_staff_work",
+      "owner": "paperclip_staff",
+      "description": "Paperclip workers produce required legal artifacts and blockers."
+    },
+    {
+      "id": "maintain_workspace",
+      "owner": "workspace",
+      "description": "Workspace stores sources, drafts, control rows, reviews and deliverables."
+    },
+    {
+      "id": "review_and_approve",
+      "owner": "hermes",
+      "description": "Hermes enforces senior review, delivery, filing, signature and writeback gates."
+    },
+    {
+      "id": "brief_partner",
+      "owner": "hermes",
+      "description": "Hermes reports status, links, blockers and next asks to the lawyer."
+    }
+  ],
+  "requiredArtifacts": [
+    "command_record",
+    "matter_brief",
+    "delegation_plan",
+    "workspace_manifest",
+    "worker_context_packages",
+    "approval_gates",
+    "partner_briefing"
+  ],
+  "approvalGateTypes": [
+    "senior_review",
+    "client_delivery",
+    "signature",
+    "legal_filing",
+    "workspace_writeback",
+    "template_update"
+  ],
+  "dashboardPrinciples": [
+    "Client and matter first.",
+    "Hermes is shown as the managing partner directing the office.",
+    "Paperclip workers are shown as legal staff, not abstract agents.",
+    "Workspace is shown as the office where the work lives.",
+    "Every action is an instruction to Hermes unless explicitly marked read-only."
+  ]
+}

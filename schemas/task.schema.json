@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Task",
+  "type": "object",
+  "required": ["id", "matter_id", "title", "status"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^TRA-[0-9]{3,}$" },
+    "matter_id": { "type": "string", "pattern": "^MAT-[0-9]{3,}$" },
+    "title": { "type": "string" },
+    "status": { "type": "string", "enum": ["backlog", "todo", "in_progress", "done", "cancelled"] },
+    "owner": { "type": "string" },
+    "due_date": { "type": "string" },
+    "priority": { "type": "string", "enum": ["low", "medium", "high", "urgent"] }
+  },
+  "additionalProperties": true
+}

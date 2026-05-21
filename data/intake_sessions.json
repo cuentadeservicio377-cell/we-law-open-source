@@ -1,0 +1,28 @@
+{
+  "sessions": [
+    {
+      "id": "INTAKE-DEMO-001",
+      "status": "review",
+      "source": "demo transcript folder",
+      "client_id": "CLI-DEMO-HEALTH",
+      "matter_id": "MAT-DEMO-HEALTH-SAAS",
+      "collected": {
+        "client": "Northstar Health Demo LLC",
+        "project": "health SaaS platform",
+        "contracted_package": "terms, privacy, ARCO, NDA and software agreements"
+      },
+      "missing": [
+        "tax_id",
+        "registered_address",
+        "authorized_representative",
+        "software ownership facts"
+      ],
+      "next_questions": [
+        "Who is the legal representative?",
+        "What is the tax ID?",
+        "Which developer owns pre-existing code?",
+        "Which address should appear in signature blocks?"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Intake Session",
+  "type": "object",
+  "required": ["id", "status", "collected", "missing", "next_questions"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^INTAKE-[0-9]{3,}$" },
+    "client_id": { "type": "string" },
+    "matter_id": { "type": "string" },
+    "status": { "type": "string", "enum": ["draft", "needs_info", "ready_for_matter", "converted", "cancelled"] },
+    "source": { "type": "string" },
+    "collected": { "type": "object" },
+    "missing": { "type": "array", "items": { "type": "string" } },
+    "next_questions": { "type": "array", "items": { "type": "string" } },
+    "history": { "type": "array", "items": { "type": "object" } }
+  },
+  "additionalProperties": true
+}

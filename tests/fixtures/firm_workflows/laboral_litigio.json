@@ -1,0 +1,28 @@
+{
+  "id": "laboral_litigio",
+  "matter": {
+    "id": "MAT-103",
+    "client": "Cliente Laboral Demo",
+    "type": "litigation"
+  },
+  "steps": [
+    {
+      "role": "litigation",
+      "title": "Plantear litigio MAT-103",
+      "expected_prefix": "LITIGATION WORK PRODUCT:",
+      "required_artifacts": ["CASE_THEORY.md", "EVIDENCE_TABLE.md", "DEADLINE_RISK.md"]
+    },
+    {
+      "role": "deadlines",
+      "title": "Plazo judicial MAT-103: audiencia",
+      "expected_prefix": "DEADLINE WORK PRODUCT:",
+      "required_artifacts": ["DEADLINE_REGISTER.json", "DEADLINE_RISK_REPORT.md"]
+    },
+    {
+      "role": "collections",
+      "title": "Validar autorizacion MAT-103",
+      "expected_prefix": "BILLING WORK PRODUCT:",
+      "required_artifacts": ["BILLING_LEDGER.json", "WORK_AUTHORIZATION_STATUS.md"]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Google Workspace Manifest",
+  "type": "object",
+  "required": ["kind", "dry_run", "root", "folders", "sheets", "matter_folder_template", "control_master_tables", "write_gate"],
+  "properties": {
+    "kind": { "type": "string" },
+    "dry_run": { "type": "boolean" },
+    "root": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "folders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "parent"],
+        "properties": {
+          "name": { "type": "string" },
+          "parent": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "sheets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "tabs": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "matter_folder_template": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "control_master_tables": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "write_gate": {
+      "type": "object",
+      "required": ["approved", "mode"],
+      "properties": {
+        "approved": { "type": "boolean" },
+        "mode": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

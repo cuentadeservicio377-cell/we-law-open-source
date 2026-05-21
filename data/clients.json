@@ -1,0 +1,13 @@
+[
+  {
+    "id": "CLI-DEMO-HEALTH",
+    "nombre": "Northstar Health Demo LLC",
+    "empresa": "Northstar Health Demo LLC",
+    "estado": "bloqueado",
+    "drive_path": "demo://workspace/clients/CLI-DEMO-HEALTH",
+    "source_folder_url": "demo://workspace/folders/demo-source-folder",
+    "control_master_url": "demo://workspace/sheets/control-master",
+    "senior_status": "blocked",
+    "missing_count": 4
+  }
+]

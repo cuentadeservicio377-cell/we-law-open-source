@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Matter Event",
+  "type": "object",
+  "required": ["id", "matter_id", "event_type", "timestamp", "actor", "payload"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^EVT-[0-9]{3,}$" },
+    "matter_id": { "type": "string", "pattern": "^MAT-[0-9]{3,}$" },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "intake",
+        "source_added",
+        "task_created",
+        "document_created",
+        "correction_requested",
+        "qa_completed",
+        "approval_requested",
+        "approval_granted",
+        "deadline_added",
+        "payment_received"
+      ]
+    },
+    "timestamp": { "type": "string" },
+    "actor": { "type": "string" },
+    "source": { "type": "string" },
+    "payload": { "type": "object" }
+  },
+  "additionalProperties": false
+}

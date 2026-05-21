@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Legal Process",
+  "type": "object",
+  "required": ["id", "title", "triggers", "requiredRoles", "requiredArtifacts"],
+  "properties": {
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "triggers": {"type": "array", "items": {"type": "string"}},
+    "requiredRoles": {"type": "array", "items": {"type": "string"}},
+    "requiredArtifacts": {"type": "array", "items": {"type": "string"}},
+    "completionGates": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

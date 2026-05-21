@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Control Master",
+  "type": "object",
+  "required": ["mode", "live_google_sheets_write", "requires_approval_for_live_write", "tables"],
+  "properties": {
+    "mode": { "type": "string", "enum": ["local_fallback", "google_sheets_dry_run", "google_sheets_live"] },
+    "live_google_sheets_write": { "type": "boolean" },
+    "requires_approval_for_live_write": { "type": "boolean" },
+    "idempotency": {
+      "type": "object",
+      "properties": {
+        "key_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "tables": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "object" }
+      }
+    }
+  },
+  "additionalProperties": false
+}

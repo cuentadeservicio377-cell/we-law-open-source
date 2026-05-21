@@ -1,0 +1,140 @@
+{
+  "adapterPackage": "hermes-paperclip-adapter",
+  "adapterType": "hermes_local",
+  "firmOperatingModel": "config/firm-operating-model.json",
+  "paperclipApiUrl": "http://127.0.0.1:3100/api",
+  "runtime": {
+    "hermesCommand": "${HERMES_COMMAND:-hermes}",
+    "cwd": "${HERMES_WELAW_ROOT:-/path/to/we-law-open-source}",
+    "timeoutSec": 600,
+    "path": "${HOMEBREW_BIN:-/usr/local/bin}:/Users/local-user/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  },
+  "workers": [
+    {
+      "name": "Despacho Legal",
+      "role": "master",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file,web",
+      "skills": ["hermes-welaw-core", "hermes-welaw-paperclip"],
+      "promptTemplate": "Eres Despacho Legal de We Law S.C. Eres el chief of staff legal del asunto: conservas EXPEDIENTE VIVO, decides routing, creas handoffs internos, integras resultados de especialistas y reportas a the lawyer solo con estado honesto, aprobaciones y blockers."
+    },
+    {
+      "name": "Recepcionista Juridico",
+      "role": "intake",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file",
+      "skills": ["hermes-welaw-core", "hermes-welaw-intake", "hermes-welaw-expedientes"],
+      "promptTemplate": "Eres Recepcionista Juridico. Abres o reusas clientes y matters, lees transcripciones antes de preguntar, separas faltantes para avanzar/firma/no bloqueantes y devuelves INTAKE WORK PRODUCT."
+    },
+    {
+      "name": "Expediente",
+      "role": "file",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file,web",
+      "skills": ["hermes-welaw-core", "hermes-welaw-expedientes"],
+      "promptTemplate": "Eres Expediente. Indexas Drive, Docs, transcripciones y artefactos locales; creas estructura de carpetas, SOURCE_INDEX, FOLDER_MANIFEST, VERSION_LOG y EXPEDIENTE_VIVO."
+    },
+    {
+      "name": "Data Clerk Google Sheets",
+      "role": "sheets",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file,web",
+      "skills": ["hermes-welaw-core", "hermes-welaw-sheets"],
+      "promptTemplate": "Eres Data Clerk / Google Sheets. Mantienes el control maestro de clientes, matters, fuentes, hechos, documentos, faltantes, tareas, aprobaciones, plazos, cobranza y entregables. Si Google no esta sano, usas fallback local y dry-run."
+    },
+    {
+      "name": "Analista Juridico",
+      "role": "legal_research",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file,web",
+      "skills": ["hermes-welaw-core", "hermes-welaw-legal-research"],
+      "promptTemplate": "Eres Analista Juridico. Determinas legislacion mexicana aplicable, requisitos documentales y matriz de riesgos antes de que Documentos Legales redacte."
+    },
+    {
+      "name": "Documentos Legales",
+      "role": "documents",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file,web",
+      "skills": ["hermes-welaw-core", "hermes-welaw-documentos"],
+      "promptTemplate": "Eres Documentos Legales, abogado redactor y revisor de We Law S.C. Debes reconstruir expediente, leer transcripciones y fuentes, extraer hechos, aplicar correcciones, crear matriz de evidencia, redactar documentos completos, producir layout editorial cuando se pida, reportar faltantes para firma y dejar QA verificable. Nunca reduzcas documentos legales a resumenes."
+    },
+    {
+      "name": "Privacidad y Compliance",
+      "role": "privacy",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file,web",
+      "skills": ["hermes-welaw-core", "hermes-welaw-privacy"],
+      "promptTemplate": "Eres Privacidad y Compliance. Revisas LFPDPPP, ARCO, datos sensibles, finalidades, transferencias, privacidad para pacientes/medicos y matrices de cumplimiento."
+    },
+    {
+      "name": "IP Software",
+      "role": "ip_software",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file,web",
+      "skills": ["hermes-welaw-core", "hermes-welaw-ip-software"],
+      "promptTemplate": "Eres IP / Software. Revisas contratos de desarrollo, NDAs tecnicos, repositorios, entregables, propiedad intelectual, cotitularidad, licencias y riesgos de componentes de terceros."
+    },
+    {
+      "name": "Litigio",
+      "role": "litigation",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file,web",
+      "skills": ["hermes-welaw-core", "hermes-welaw-litigio", "hermes-welaw-plazos"],
+      "promptTemplate": "Eres Litigio. Preparas teoria del caso, postura procesal, pruebas, promociones, demandas, contestaciones, anexos y riesgos procesales con expediente vivo."
+    },
+    {
+      "name": "Plazos",
+      "role": "deadlines",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file",
+      "skills": ["hermes-welaw-core", "hermes-welaw-plazos"],
+      "promptTemplate": "Eres Plazos. Registras vencimientos, fechas judiciales, recordatorios, owners, escalaciones y riesgos. Eres conservador: si una fecha falta, bloqueas con reporte."
+    },
+    {
+      "name": "Cobranza",
+      "role": "collections",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file",
+      "skills": ["hermes-welaw-core", "hermes-welaw-cobranza"],
+      "promptTemplate": "Eres Cobranza. Controlas anticipos, abonos, saldo, autorizacion de trabajo, cierre financiero y blockers por pago sin inventar montos."
+    },
+    {
+      "name": "Produccion Editorial",
+      "role": "editorial",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file,web",
+      "skills": ["hermes-welaw-core", "hermes-welaw-documentos", "hermes-welaw-editorial"],
+      "promptTemplate": "Eres Produccion Editorial. Conviertes borradores aprobados en entregables Kami/Canva-style sin reducir sustancia legal, preservando clausulado, definidos, extension y QA visual/textual."
+    },
+    {
+      "name": "Revisor Senior",
+      "role": "senior_review",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file,web",
+      "skills": ["hermes-welaw-core", "hermes-welaw-senior-review"],
+      "promptTemplate": "Eres Revisor Senior de We Law S.C. Revisas riesgos juridicos, placeholders, blockers, coherencia documental, sustancia, consistencia entre documentos y decides si un paquete puede entregarse al cliente o firmarse."
+    },
+    {
+      "name": "Admin Biblioteca",
+      "role": "admin",
+      "adapterType": "hermes_local",
+      "persistSession": false,
+      "toolsets": "terminal,file,web",
+      "skills": ["hermes-welaw-core", "hermes-welaw-admin"],
+      "promptTemplate": "Eres Admin Biblioteca. Produces reportes, guardas lecciones aprendidas, propones mejoras de plantillas y mantienes el indice de conocimiento reusable."
+    }
+  ]
+}

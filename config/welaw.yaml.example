@@ -1,0 +1,87 @@
+{
+  "despacho": {
+    "nombre": "We Law S.C.",
+    "company_id": "e785f517-d38a-4aaf-a260-8b9c85b67732",
+    "timezone": "America/Mexico_City",
+    "moneda": "MXN",
+    "abogado_firmante": "Example Responsible Lawyer"
+  },
+  "google_workspace": {
+    "enabled": false,
+    "drive_root_id": "REPLACE_WITH_DRIVE_ROOT_ID",
+    "clientes_sheet_id": "REPLACE_WITH_CLIENTES_SHEET_ID",
+    "asuntos_sheet_id": "REPLACE_WITH_ASUNTOS_SHEET_ID",
+    "finanzas_sheet_id": "REPLACE_WITH_FINANZAS_SHEET_ID",
+    "biblioteca_folder_id": "REPLACE_WITH_BIBLIOTECA_FOLDER_ID"
+  },
+  "paperclip": {
+    "enabled": false,
+    "api_url": "http://127.0.0.1:3100/api",
+    "adapter_type": "hermes_local",
+    "company_id": "e785f517-d38a-4aaf-a260-8b9c85b67732",
+    "project_name": "We Law S.C."
+  },
+  "folders": {
+    "client_root": "Clientes",
+    "matter_root": "01-Matters",
+    "matter_default": [
+      "00-Insumos crudos",
+      "01-Expediente vivo",
+      "02-Documentos en trabajo",
+      "03-Revision y aprobaciones",
+      "04-Versiones aprobadas",
+      "05-Anexos y evidencia",
+      "06-Cobranza",
+      "07-Cierre"
+    ],
+    "client_default": [
+      "00-Cliente",
+      "01-Matters",
+      "02-Documentos fundacionales",
+      "03-Historial"
+    ]
+  },
+  "local_storage": {
+    "enabled": true,
+    "root": "workspace",
+    "clients_root": "workspace/clientes",
+    "matters_root": "workspace/matters",
+    "templates_root": "workspace/templates/legal",
+    "template_manifest": "workspace/templates/legal/manifest.json",
+    "generated_root": "workspace/generated",
+    "inbox_root": "workspace/inbox",
+    "client_memory_root": "data/client_memory",
+    "intake_sessions": "data/intake_sessions.json",
+    "drive_ready": true
+  },
+  "matter_types": [
+    "corporativo",
+    "contractual",
+    "litigio_civil",
+    "litigio_mercantil",
+    "laboral",
+    "compliance",
+    "propiedad_intelectual"
+  ],
+  "document_types": [
+    "contrato_prestacion",
+    "nda",
+    "convenio",
+    "demanda_inicial",
+    "memo_estrategia",
+    "aviso_privacidad",
+    "terminos_condiciones"
+  ],
+  "approval_types": [
+    "aprobar_engagement_letter",
+    "aprobar_documento",
+    "aprobar_paquete_documentos",
+    "aprobar_demanda_inicial",
+    "aprobar_estrategia_litigio",
+    "aprobar_revision_juridica",
+    "confirmar_cierre_asunto",
+    "confirmar_anticipo",
+    "confirmar_cierre_financiero",
+    "aprobar_actualizacion_plantilla"
+  ]
+}

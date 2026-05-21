@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "We Law Legal Brain Page",
+  "type": "object",
+  "required": ["slug", "domain", "title", "compiled_truth", "timeline"],
+  "properties": {
+    "slug": {"type": "string"},
+    "domain": {"type": "string"},
+    "title": {"type": "string"},
+    "frontmatter": {"type": "object"},
+    "compiled_truth": {"type": "string"},
+    "open_threads": {"type": "array", "items": {"type": "string"}},
+    "links": {"type": "array", "items": {"type": "string"}},
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "source", "summary"],
+        "properties": {
+          "date": {"type": "string"},
+          "source": {"type": "string"},
+          "summary": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
